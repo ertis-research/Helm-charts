@@ -1,0 +1,123 @@
+# Configuration properties for Mosquitto.
+mqtttomongo:
+  replicaCount: 1
+
+  image:
+    repository: ertis/mqtttomongo
+    pullPolicy: Always
+    # Overrides the image tag whose default is the chart appVersion.
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+
+  service:
+    type: LoadBalancer
+    port: 7998
+    targetPort: 8001
+
+  ingress:
+    enabled: false
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  nodeSelector: {}
+
+  tolerations: []
+
+  affinity: {}
+
+
+
+# Configuration properties for Eclipse Ditto.
+ditto:
+  # do not set cpu limits for Ditto to avoid CFS scheduler limits
+  # ref: https://doc.akka.io/docs/akka/snapshot/additional/deploy.html#in-kubernetes
+  connectivity:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "1Gi"
+
+  gateway:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  nginx:
+    service:
+      type: NodePort
+      nodePort: 30525
+    resources:
+      requests:
+        cpu: 50m
+      limits:
+        cpu: 150m
+        memory: "32Mi"
+
+  policies:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  swaggerui:
+    enabled: false
+
+  things:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  thingsSearch:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  mongodb:
+    persistence:
+      enabled: true
+      existingClaim: dt-pvc-mongodb
+    volumePermissions:
+      enabled: true
+    resources:
+      requests:
+        cpu: 150m
+        memory: "256Mi"
+      limits:
+        cpu: 250m
+        memory: "512Mi"

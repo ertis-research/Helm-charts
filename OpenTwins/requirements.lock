@@ -1,0 +1,12 @@
+dependencies:
+- name: mqtttomongo
+  repository: https://sergioinf.github.io/helmchart/
+  version: 1.0.0
+- name: ditto
+  repository: https://eclipse.org/packages/charts/
+  version: 2.5.8
+- name: mosquitto
+  repository: https://sergioinf.github.io/helmchart/
+  version: 0.2.0
+digest: sha256:13e2476775165d2813cfa34e92ac79554b08484576d45f33e1f70be2ae648c79
+generated: "2022-11-25T13:58:43.340381219+01:00"

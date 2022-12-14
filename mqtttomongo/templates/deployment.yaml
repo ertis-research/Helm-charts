@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "installation.name" . }}-mqtt-mongo
+  labels:
+    name: {{ include "installation.name" . }}-mqtt-mongo
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      name: pod-{{ include "installation.name" . }}-mqtt-mongo
+  template:
+    metadata:
+      labels:
+        name: pod-{{ include "installation.name" . }}-mqtt-mongo
+      name: {{ include "installation.name" . }}-mqtt-mongo
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        env:
+          - name: MOSQUITTO_BROKER
+            value: {{ include "installation.name" . }}
+          - name: MQTTPORT
+            value: "{{ .Values.mqttport}}"
+        name: {{ include "installation.name" . }}-mqtt-mongo
+        ports:
+        - containerPort: 8001
+        imagePullPolicy: {{ .Values.image.pullPolicy }}

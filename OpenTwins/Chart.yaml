@@ -1,0 +1,15 @@
+apiVersion: v1
+version: 0.4.0
+appVersion: 0.4.0
+name: LittleOpenTwins
+description: Esta es una plataforma de codigo abierto orientada a gemelos digitales.
+keywords:
+  - iot-package
+  - IoT
+  - messaging
+  - digital twin
+sources:
+  - https://github.com/sergioinf/helmchart/OpenTwins
+maintainers:
+  - name: sergioip
+    email: sergioip@uma.es

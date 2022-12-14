@@ -1,0 +1,10 @@
+dependencies:
+  - name: mqtttomongo
+    version: ^1.0.0
+    repository: "https://sergioinf.github.io/helmchart/"
+  - name: ditto
+    version: ^2.3.2
+    repository: "https://eclipse.org/packages/charts/"
+  - name: mosquitto
+    version: ^0.2.0
+    repository: "https://sergioinf.github.io/helmchart/"
