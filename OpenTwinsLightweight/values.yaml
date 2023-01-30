@@ -21,11 +21,6 @@ mqtttomongo:
     # fsGroup: 2000
 
 
-  service:
-    type: LoadBalancer
-    port: 7998
-    targetPort: 8001
-
   ingress:
     enabled: false
   resources: {}
