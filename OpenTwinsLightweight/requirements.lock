@@ -9,4 +9,4 @@ dependencies:
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.2.0
 digest: sha256:94366588784c43a878a96497afca0b6faeeb6c4f9d95d3c67ef436f0c5b32e04
-generated: "2023-01-30T10:32:42.906310351+01:00"
+generated: "2023-01-30T12:02:33.571409649+01:00"
