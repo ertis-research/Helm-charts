@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: dt-pvc-mongodb
+  name: local-path-pvc
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: sc-mongodb
+  storageClassName: local-path
   resources:
     requests:
       storage: 8Gi
