@@ -1,0 +1,7 @@
+apiVersion: storage.k3s.io/v1
+kind: StorageClass
+metadata:
+  name: sc-mongodb
+provisioner: kubernetes.io/no-provisioner
+reclaimPolicy: Retain
+volumeBindingMode: Immediate
