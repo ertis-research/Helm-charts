@@ -106,7 +106,7 @@ ditto:
   mongodb:
     persistence:
       enabled: true
-      existingClaim: dt-pvc-mongodb
+      existingClaim: local-path-pvc
     volumePermissions:
       enabled: true
     resources:
