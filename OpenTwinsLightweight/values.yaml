@@ -106,7 +106,7 @@ ditto:
   mongodb:
     image:
       repository: mongo
-      tag: 4.4.13
+      tag: 4.4.6
     persistence:
       enabled: true
       existingClaim: dt-pvc-mongodb
