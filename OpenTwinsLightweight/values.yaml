@@ -127,8 +127,9 @@ ditto:
     spec:
       containers:
       - name: mongodb
-        image: mongo:4.4.6
-        repository: mongo
+        image:
+          repository: mongo
+          tag: 4.4.6
         env:
           - name: MONGO_INITDB_ROOT_USERNAME
             value: admin
