@@ -3,7 +3,7 @@ entries:
   OpenTwins-Lightweight:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2023-02-02T09:27:13.2904031+01:00"
+    created: "2023-02-02T12:43:23.25839135+01:00"
     dependencies:
     - name: mqtttomongo
       repository: https://ertis-research.github.io/Helm-charts/
@@ -15,7 +15,7 @@ entries:
       repository: https://ertis-research.github.io/Helm-charts/
       version: ^0.2.0
     description: Esta es una plataforma de codigo abierto orientada a gemelos digitales.
-    digest: 54d89800fcc293c8b5894243e3930a4a4391dde3b43613a5f094862ebbd39877
+    digest: a8e7002eea22b61eb5eca6fed71dbd5e4c189aa971835d8996ba81fc11825dce
     keywords:
     - iot-package
     - IoT
@@ -33,7 +33,7 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: 1.6.10
-    created: "2023-02-02T09:27:13.292660562+01:00"
+    created: "2023-02-02T12:43:23.259905878+01:00"
     description: Eclipse Mosquitto - An open source MQTT broker
     digest: c7e7539ad54d59e2a2afba1da0ee798852350ddda7813efc51a4546a2922b451
     home: https://mosquitto.org/
@@ -52,7 +52,7 @@ entries:
   mqtttomongo:
   - apiVersion: v2
     appVersion: latest
-    created: "2023-02-02T09:27:13.293649299+01:00"
+    created: "2023-02-02T12:43:23.260648503+01:00"
     description: This application takes messages from MQTT server and save them into
       a MondoDB database
     digest: 5ac1c09332eeddaf840b5aaec85eb71f26ebb16e34300268f606ff0cbaec763e
@@ -67,4 +67,4 @@ entries:
     urls:
     - charts/mqtttomongo-1.0.0.tgz
     version: 1.0.0
-generated: "2023-02-02T09:27:13.269177088+01:00"
+generated: "2023-02-02T12:43:23.237940004+01:00"

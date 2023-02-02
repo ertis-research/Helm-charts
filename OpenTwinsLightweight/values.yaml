@@ -104,11 +104,14 @@ ditto:
         memory: "768Mi"
 
   mongodb:
+    image:
+      repository: mongo
+      tag: 4.4.13
     persistence:
       enabled: true
-      existingClaim: local-path-pvc
+      existingClaim: dt-pvc-mongodb
     volumePermissions:
-      enabled: true
+      enabled: false
     resources:
       requests:
         cpu: 150m
