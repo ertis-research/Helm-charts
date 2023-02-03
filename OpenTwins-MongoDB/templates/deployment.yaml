@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "installation.name" . }}-mongodb
+  labels:
+    name: {{ include "installation.name" . }}-mongodb
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      name: pod-{{ include "installation.name" . }}-mongodb
+  template:
+    metadata:
+      labels:
+        name: pod-{{ include "installation.name" . }}-mongodb
+      name: {{ include "installation.name" . }}-mongodb
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        name: {{ include "installation.name" . }}-mongodb
+        ports:
+        - containerPort: 8001
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
