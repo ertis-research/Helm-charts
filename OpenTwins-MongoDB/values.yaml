@@ -50,7 +50,6 @@ tolerations: []
 affinity: {}
 
 service:
-  type: NodePort
-  nodePort: 27017
+  type: LoadBalancer
   port: 27017
   targetPort: 27017
