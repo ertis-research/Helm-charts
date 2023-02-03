@@ -103,5 +103,35 @@ ditto:
       limits:
         memory: "768Mi"
 
+  # mongodb:
+  #   image:
+  #     repository: mongo
+  #     tag: 4.4.6
+  #   persistence:
+  #     enabled: true
+  #     existingClaim: dt-pvc-mongodb
+  #   volumePermissions:
+  #     enabled: false
+  #   resources:
+  #     requests:
+  #       cpu: 150m
+  #       memory: "256Mi"
+  #     limits:
+  #       cpu: 250m
+  #       memory: "512Mi"
   mongodb:
-    enabled: false
+    metadata:
+      labels:
+        app: database
+        selector: mongodb
+    spec:
+      containers:
+      - name: mongodb
+        image:
+          repository: mongo
+          tag: 4.4.6
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: admin
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: password
