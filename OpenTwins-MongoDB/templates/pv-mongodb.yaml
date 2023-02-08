@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ot-pv-mongodb
+spec:
+  volumeMode: Filesystem
+  accessModes:
+   - ReadWriteOnce
+  capacity:
+    storage: 8Gi
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /ot-platform/mongodb
+    type: DirectoryOrCreate
+  claimRef:
+    namespace: {{ .Release.Namespace}}
+    name: ot-pvc-mongodb

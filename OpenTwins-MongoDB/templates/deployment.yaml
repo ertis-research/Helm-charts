@@ -17,9 +17,23 @@ spec:
         name: pod-{{ include "installation.name" . }}-mongodb
       name: {{ include "installation.name" . }}-mongodb
     spec:
+      #nodeName: node2
       containers:
       - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         name: {{ include "installation.name" . }}-mongodb
         ports:
         - containerPort: 27017
+          protocol: TCP
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME
+            value: admin
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            value: password
+        volumeMounts:
+          - name: ot-pv-mongodb
+            mountPath: /data/db
+      volumes:
+        - name: ot-pv-mongodb
+          persistentVolumeClaim:
+            claimName: ot-pvc-mongodb
