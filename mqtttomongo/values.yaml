@@ -22,7 +22,7 @@ podAnnotations: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-mqttport: 30510
+mqttport: 1883
 
 service:
   type: NodePort

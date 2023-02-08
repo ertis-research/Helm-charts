@@ -103,22 +103,9 @@ ditto:
       limits:
         memory: "768Mi"
 
-  # mongodb:
-  #   image:
-  #     repository: mongo
-  #     tag: 4.4.6
-  #   persistence:
-  #     enabled: true
-  #     existingClaim: dt-pvc-mongodb
-  #   volumePermissions:
-  #     enabled: false
-  #   resources:
-  #     requests:
-  #       cpu: 150m
-  #       memory: "256Mi"
-  #     limits:
-  #       cpu: 250m
-  #       memory: "512Mi"
+  mongodb:
+    enabled: false
+    
 mongodb:
   metadata:
     labels:
