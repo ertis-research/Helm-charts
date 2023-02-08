@@ -21,10 +21,10 @@ spec:
       - image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
         env:
           - name: MOSQUITTO_BROKER
-            value: {{ include "installation.name" . }}
+            value: {{ include "installation.name" }}
           - name: MQTTPORT
             value: "{{ .Values.mqttport}}"
-        name: {{ include "installation.name" . }}-mqtt-mongo
+        name: {{ include "installation.name" }}-mqtt-mongo
         ports:
         - containerPort: 8001
         imagePullPolicy: {{ .Values.image.pullPolicy }}
