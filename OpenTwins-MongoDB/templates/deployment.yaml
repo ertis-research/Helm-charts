@@ -25,11 +25,11 @@ spec:
         - containerPort: 27017
           protocol: TCP
         imagePullPolicy: {{ .Values.image.pullPolicy }}
-        env:
-          - name: MONGO_INITDB_ROOT_USERNAME
-            value: admin
-          - name: MONGO_INITDB_ROOT_PASSWORD
-            value: password
+        # env:
+        #   - name: MONGO_INITDB_ROOT_USERNAME
+        #     value: admin
+        #   - name: MONGO_INITDB_ROOT_PASSWORD
+        #     value: password
         volumeMounts:
           - name: ot-pv-mongodb
             mountPath: /data/db
