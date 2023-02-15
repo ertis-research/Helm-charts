@@ -1,7 +1,7 @@
 apiVersion: v1
 appVersion: "1.6.10"
 description: Eclipse Mosquitto - An open source MQTT broker 
-name: mosquitto
+name: Mosquitto
 version: 0.2.0
 keywords:
   - message queue

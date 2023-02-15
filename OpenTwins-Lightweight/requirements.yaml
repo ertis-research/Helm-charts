@@ -1,11 +1,11 @@
 dependencies:
-  - name: mqtttomongo
+  - name: MqttToMongo
     version: ^1.0.0
     repository: "https://ertis-research.github.io/Helm-charts/"
   - name: ditto
     version: ^3.1.2
     repository: "https://eclipse.org/packages/charts/"
-  - name: mosquitto
+  - name: Mosquitto
     version: ^0.2.0
     repository: "https://ertis-research.github.io/Helm-charts/"
   - name: OpenTwins-MongoDB
