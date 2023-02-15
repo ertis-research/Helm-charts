@@ -9,7 +9,5 @@ spec:
       nodePort: {{ .Values.service.nodePort }}
       protocol: TCP
       targetPort : {{ .Values.service.targetPort}}
-  externalIPs: 
-    - 192.168.44.11
   selector:
     name: pod-{{ include "installation.name" . }}-mongodb
