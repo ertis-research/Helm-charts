@@ -1,46 +1,9 @@
 apiVersion: v1
 entries:
-  Mosquitto:
-  - apiVersion: v1
-    appVersion: 1.6.10
-    created: "2023-02-20T14:07:33.552083+01:00"
-    description: Eclipse Mosquitto - An open source MQTT broker
-    digest: 88ce884190cebe8bfee68d704da56f1c8b41e55d47f00f58c1e54565df9123d2
-    home: https://mosquitto.org/
-    icon: https://mosquitto.org/images/mosquitto-text-side-28.png
-    keywords:
-    - message queue
-    - MQTT
-    - mosquitto
-    - eclipse-iot
-    name: Mosquitto
-    sources:
-    - https://github.com/eclipse/mosquitto
-    urls:
-    - charts/Mosquitto-0.2.0.tgz
-    version: 0.2.0
-  MqttToMongo:
-  - apiVersion: v2
-    appVersion: latest
-    created: "2023-02-20T14:07:33.5706129+01:00"
-    description: This application takes messages from MQTT server and save them into
-      a MondoDB database
-    digest: a294007ea575cf054104c11d895edd34a992988d6d268c6494a8468541c5053e
-    keywords:
-    - message queue
-    - MQTT
-    - mosquitto
-    - eclipse-iot
-    - mongodb
-    name: MqttToMongo
-    type: application
-    urls:
-    - charts/mqtttomongo-1.0.0.tgz
-    version: 1.0.0
   OpenTwins-Lightweight:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2023-02-20T14:07:33.5676049+01:00"
+    created: "2023-02-20T14:13:43.3885159+01:00"
     dependencies:
     - name: MqttToMongo
       repository: https://ertis-research.github.io/Helm-charts/
@@ -73,7 +36,7 @@ entries:
   OpenTwins-MongoDB:
   - apiVersion: v2
     appVersion: 4.4.6
-    created: "2023-02-20T14:07:33.5696029+01:00"
+    created: "2023-02-20T14:13:43.3895177+01:00"
     description: This helm charts allows to install a compatible version of MongoDB
       far from the original version proposed by Eclipse Ditto
     digest: afbe1539ea99d1f6119a8cc5326b4e784c1ad45ebd8fac3f7713c74975331a33
@@ -82,4 +45,41 @@ entries:
     urls:
     - charts/OpenTwins-MongoDB-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-20T14:07:33.5510831+01:00"
+  mosquitto:
+  - apiVersion: v1
+    appVersion: 1.6.10
+    created: "2023-02-20T14:13:43.3895177+01:00"
+    description: Eclipse Mosquitto - An open source MQTT broker
+    digest: c00406cb689d9fb18a41c5f548f49f11e204fd181903138126d47f51257e13b4
+    home: https://mosquitto.org/
+    icon: https://mosquitto.org/images/mosquitto-text-side-28.png
+    keywords:
+    - message queue
+    - MQTT
+    - mosquitto
+    - eclipse-iot
+    name: mosquitto
+    sources:
+    - https://github.com/eclipse/mosquitto
+    urls:
+    - charts/mosquitto-0.2.0.tgz
+    version: 0.2.0
+  mqtttomongo:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2023-02-20T14:13:43.3895177+01:00"
+    description: This application takes messages from MQTT server and save them into
+      a MondoDB database
+    digest: e35133eca303e570944e4235e3750968613906f23d93ac945b624a24596dcc83
+    keywords:
+    - message queue
+    - MQTT
+    - mosquitto
+    - eclipse-iot
+    - mongodb
+    name: mqtttomongo
+    type: application
+    urls:
+    - charts/mqtttomongo-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-02-20T14:13:43.378545+01:00"
