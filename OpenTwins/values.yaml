@@ -1,0 +1,181 @@
+# Configuration properties for Eclipse Ditto.
+ditto:
+  # do not set cpu limits for Ditto to avoid CFS scheduler limits
+  # ref: https://doc.akka.io/docs/akka/snapshot/additional/deploy.html#in-kubernetes
+  connectivity:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "1Gi"
+
+  gateway:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  nginx:
+    service:
+      type: NodePort
+      nodePort: 30525
+    resources:
+      requests:
+        cpu: 50m
+      limits:
+        cpu: 150m
+        memory: "32Mi"
+
+  policies:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  swaggerui:
+    enabled: false
+
+  things:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  thingsSearch:
+    resources:
+      requests:
+        cpu: 200m
+      limits:
+        memory: "768Mi"
+
+  mongodb:
+    enabled: false
+    
+mongodb:
+  auth:
+    enabled: false
+  securityContext:
+    enabled: false
+  persistence:
+    enabled: false
+  metadata:
+    labels:
+      app: database
+      selector: mongodb
+  spec:
+    containers:
+    - name: mongodb
+      image:
+        repository: mongo
+        tag: 4.4.6
+      # env:
+      #   - name: MONGO_INITDB_ROOT_USERNAME
+      #     value: admin
+      #   - name: MONGO_INITDB_ROOT_PASSWORD
+      #     value: password
+
+grafana:
+  persistence:
+    enabled: true
+  service:
+    type: NodePort
+  adminUser: admin
+  adminPassword: admin
+
+influxdb2:
+  persistence:
+    storageClass: manual
+  service:
+    type: NodePort
+  image:
+    pullPolicy: Always
+  adminUser:
+    password: password
+
+# Configuration properties for Eclipse Hono.
+hono:
+
+  kafka:
+    auth:
+      sasl:
+        jaas:
+          clientUsers:
+            - "hono"
+            - "ditto-c2e"
+          clientPasswords:
+            - "hono-secret"
+            - "verysecret"
+
+  livenessProbeInitialDelaySeconds: 900
+  readinessProbeInitialDelaySeconds: 45
+  useLoadBalancer: true
+
+  prometheus:
+    createInstance: false
+
+  grafana:
+    enabled: false
+
+  amqpMessagingNetworkExample:
+    dispatchRouter:
+      resources:
+        requests:
+          cpu: 200m
+    broker:
+      artemis:
+        resources:
+          requests:
+            cpu: 200m
+
+  authServer:
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "196Mi"
+      limits:
+        cpu: "1"
+        memory: "256Mi"
+    extraVolumes:
+      - name: "permissions"
+        secret:
+          secretName: "permissions"
+    extraVolumeMounts:
+      - name: "permissions"
+        mountPath: "/var/run/hono/auth"
+    hono:
+      auth:
+        svc:
+          permissionsPath: "/var/run/hono/auth/permissions.json"
+          supportedSaslMechanisms: "PLAIN"
+          signing:
+            # tokenExpiration contains the number of seconds after which tokens issued
+            # by the Auth server will expire.
+            tokenExpiration: 3600
+
+  deviceRegistryExample:
+    type: mongodb
+    mongoDBBasedDeviceRegistry:
+      resources:
+        requests:
+          cpu: 200m
+      mongodb:
+        host: {{ include "installation.name" . }}-mongodb
+        port: 27017
+        dbName: hono
+
+  adapters:
+    amqp:
+      resources:
+        requests:
+          cpu: 200m
+    http:
+      resources:
+        requests:
+          cpu: 200m
+    mqtt:
+      resources:
+        requests:
+          cpu: 200m
