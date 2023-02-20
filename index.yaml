@@ -3,22 +3,22 @@ entries:
   OpenTwins-Lightweight:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2023-02-20T14:13:43.3885159+01:00"
+    created: "2023-02-20T14:21:16.1743526+01:00"
     dependencies:
-    - name: MqttToMongo
+    - name: mqtttomongo
       repository: https://ertis-research.github.io/Helm-charts/
       version: ^1.0.0
     - name: ditto
       repository: https://eclipse.org/packages/charts/
       version: ^3.1.2
-    - name: Mosquitto
+    - name: mosquitto
       repository: https://ertis-research.github.io/Helm-charts/
       version: ^0.2.0
     - name: OpenTwins-MongoDB
       repository: https://ertis-research.github.io/Helm-charts/
       version: ^0.1.0
     description: Esta es una plataforma de codigo abierto orientada a gemelos digitales.
-    digest: cdc603c1ffa08415e19b34822cb4345273d5f301eb7718fcb4740697299cd4b8
+    digest: c2a55748d293e5b4b9a793759c86b7205395bfe5dd847c029f4892ef9caf1303
     keywords:
     - iot-package
     - IoT
@@ -36,7 +36,7 @@ entries:
   OpenTwins-MongoDB:
   - apiVersion: v2
     appVersion: 4.4.6
-    created: "2023-02-20T14:13:43.3895177+01:00"
+    created: "2023-02-20T14:21:16.1753487+01:00"
     description: This helm charts allows to install a compatible version of MongoDB
       far from the original version proposed by Eclipse Ditto
     digest: afbe1539ea99d1f6119a8cc5326b4e784c1ad45ebd8fac3f7713c74975331a33
@@ -48,7 +48,7 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: 1.6.10
-    created: "2023-02-20T14:13:43.3895177+01:00"
+    created: "2023-02-20T14:21:16.1753487+01:00"
     description: Eclipse Mosquitto - An open source MQTT broker
     digest: c00406cb689d9fb18a41c5f548f49f11e204fd181903138126d47f51257e13b4
     home: https://mosquitto.org/
@@ -67,7 +67,7 @@ entries:
   mqtttomongo:
   - apiVersion: v2
     appVersion: latest
-    created: "2023-02-20T14:13:43.3895177+01:00"
+    created: "2023-02-20T14:21:16.1763486+01:00"
     description: This application takes messages from MQTT server and save them into
       a MondoDB database
     digest: e35133eca303e570944e4235e3750968613906f23d93ac945b624a24596dcc83
@@ -82,4 +82,4 @@ entries:
     urls:
     - charts/mqtttomongo-1.0.0.tgz
     version: 1.0.0
-generated: "2023-02-20T14:13:43.378545+01:00"
+generated: "2023-02-20T14:21:16.1603524+01:00"
