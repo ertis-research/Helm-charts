@@ -162,7 +162,8 @@ hono:
         requests:
           cpu: 200m
       mongodb:
-        host: {{ include "installation.name" . }}-mongodb
+      #By the moment, you have to write here the installation name instead of ot if you want to set you own.
+        host: ot-mongodb
         port: 27017
         dbName: hono
 
