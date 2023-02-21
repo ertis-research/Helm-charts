@@ -130,30 +130,30 @@ hono:
           requests:
             cpu: 200m
 
-  authServer:
-    resources:
-      requests:
-        cpu: "200m"
-        memory: "196Mi"
-      limits:
-        cpu: "1"
-        memory: "256Mi"
-    extraVolumes:
-      - name: "permissions"
-        secret:
-          secretName: "permissions"
-    extraVolumeMounts:
-      - name: "permissions"
-        mountPath: "/var/run/hono/auth"
-    hono:
-      auth:
-        svc:
-          permissionsPath: "/var/run/hono/auth/permissions.json"
-          supportedSaslMechanisms: "PLAIN"
-          signing:
-            # tokenExpiration contains the number of seconds after which tokens issued
-            # by the Auth server will expire.
-            tokenExpiration: 3600
+  # authServer:
+  #   resources:
+  #     requests:
+  #       cpu: "200m"
+  #       memory: "196Mi"
+  #     limits:
+  #       cpu: "1"
+  #       memory: "256Mi"
+  #   extraVolumes:
+  #     - name: "permissions"
+  #       secret:
+  #         secretName: "permissions"
+  #   extraVolumeMounts:
+  #     - name: "permissions"
+  #       mountPath: "/var/run/hono/auth"
+  #   hono:
+  #     auth:
+  #       svc:
+  #         permissionsPath: "/var/run/hono/auth/permissions.json"
+  #         supportedSaslMechanisms: "PLAIN"
+  #         signing:
+  #           # tokenExpiration contains the number of seconds after which tokens issued
+  #           # by the Auth server will expire.
+  #           tokenExpiration: 3600
 
   deviceRegistryExample:
     type: mongodb

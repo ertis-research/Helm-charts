@@ -11,7 +11,7 @@ dependencies:
   - name: influxdb2
     version: ^2.1.1
     repository: "https://helm.influxdata.com/"
-  - name: Mosquitto
+  - name: mosquitto
     version: ^0.2.0
     repository: "https://ertis-research.github.io/Helm-charts/"
   - name: hono
