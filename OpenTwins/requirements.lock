@@ -1,24 +1,24 @@
 dependencies:
 - name: ditto
   repository: https://eclipse.org/packages/charts/
-  version: 3.1.2
+  version: 3.2.1
 - name: OpenTwins-MongoDB
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.1.0
 - name: grafana
   repository: https://grafana.github.io/helm-charts
-  version: 6.50.7
+  version: 6.53.0
 - name: influxdb2
   repository: https://helm.influxdata.com/
   version: 2.1.1
 - name: telegraf
   repository: https://helm.influxdata.com/
-  version: 1.8.26
+  version: 1.8.27
 - name: mosquitto
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.2.0
 - name: hono
   repository: https://eclipse.org/packages/charts/
-  version: 2.2.1
-digest: sha256:8b8488eaf53566cdbae1752c1ddb10018c85ab59ae34835626d524502922c659
-generated: "2023-02-21T13:15:03.1536549+01:00"
+  version: 2.3.2
+digest: sha256:500b3fed2010152d6afb8fdab19c1ea0618cfa27a9dc01ce62b9c36779bf0b22
+generated: "2023-04-18T12:46:07.0141814+02:00"
