@@ -4,12 +4,12 @@ dependencies:
   version: 1.0.0
 - name: ditto
   repository: https://eclipse.org/packages/charts/
-  version: 3.2.1
+  version: 3.1.1
 - name: mosquitto
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.2.0
 - name: OpenTwins-MongoDB
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.1.0
-digest: sha256:7da9d21bd6c8a02f19207615a31b0457fd2dd3ee4c0b667a247614c74b60ca13
-generated: "2023-04-18T12:46:41.3811525+02:00"
+digest: sha256:b4066e084c0f0e5714a7d312d812d7d7190a7b4cf415098ed4be253b0c35a69d
+generated: "2023-04-18T14:14:43.1125045+02:00"
