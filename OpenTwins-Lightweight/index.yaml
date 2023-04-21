@@ -1,0 +1,87 @@
+apiVersion: v1
+entries:
+  OpenTwins-MongoDB:
+  - apiVersion: v2
+    appVersion: 4.4.6
+    created: "2023-04-19T08:50:02.5045917+02:00"
+    description: This helm charts allows to install a compatible version of MongoDB
+      far from the original version proposed by Eclipse Ditto
+    digest: afbe1539ea99d1f6119a8cc5326b4e784c1ad45ebd8fac3f7713c74975331a33
+    name: OpenTwins-MongoDB
+    type: application
+    urls:
+    - charts/OpenTwins-MongoDB-0.1.0.tgz
+    version: 0.1.0
+  ditto:
+  - apiVersion: v2
+    appVersion: 3.2.0
+    created: "2023-04-19T08:50:02.5123107+02:00"
+    dependencies:
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: https://charts.bitnami.com/bitnami
+      version: ^12.x
+    description: 'Eclipse Ditto™ is a technology in the IoT implementing a software
+      pattern called “digital twins”. A digital twin is a virtual, cloud based, representation
+      of his real world counterpart (real world “Things”, e.g. devices like sensors,
+      smart heating, connected cars, smart grids, EV charging stations etc). '
+    digest: c8eabb8e528009b434893c39423aad05a741cf80fbf7dfff370ddc030af72697
+    home: https://www.eclipse.org/ditto
+    icon: https://www.eclipse.org/ditto/images/ditto.svg
+    keywords:
+    - iot-chart
+    - digital-twin
+    - IoT
+    maintainers:
+    - email: axel.koehler@kiwigrid.com
+      name: axdotl
+    - email: thomas.jaeckle@bosch.io
+      name: thjaeckle
+    - email: stefan.maute@bosch.io
+      name: stmaute
+    name: ditto
+    sources:
+    - https://github.com/eclipse-ditto/ditto
+    - https://github.com/eclipse/packages
+    type: application
+    urls:
+    - charts/ditto-3.2.1.tgz
+    version: 3.2.1
+  mosquitto:
+  - apiVersion: v1
+    appVersion: 1.6.10
+    created: "2023-04-19T08:50:02.5128628+02:00"
+    description: Eclipse Mosquitto - An open source MQTT broker
+    digest: 90d50ac36e6f4321da95388b93e717e7610f4a8f542928676336d2647abd449a
+    home: https://mosquitto.org/
+    icon: https://mosquitto.org/images/mosquitto-text-side-28.png
+    keywords:
+    - message queue
+    - MQTT
+    - mosquitto
+    - eclipse-iot
+    name: mosquitto
+    sources:
+    - https://github.com/eclipse/mosquitto
+    urls:
+    - charts/mosquitto-0.2.0.tgz
+    version: 0.2.0
+  mqtttomongo:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2023-04-19T08:50:02.5133725+02:00"
+    description: This application takes messages from MQTT server and save them into
+      a MondoDB database
+    digest: e35133eca303e570944e4235e3750968613906f23d93ac945b624a24596dcc83
+    keywords:
+    - message queue
+    - MQTT
+    - mosquitto
+    - eclipse-iot
+    - mongodb
+    name: mqtttomongo
+    type: application
+    urls:
+    - charts/mqtttomongo-1.0.0.tgz
+    version: 1.0.0
+generated: "2023-04-19T08:50:02.5045917+02:00"

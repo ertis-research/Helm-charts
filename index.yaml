@@ -3,7 +3,48 @@ entries:
   OpenTwins:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2023-04-18T14:15:07.847853+02:00"
+    created: "2023-04-21T09:36:46.9613203+02:00"
+    dependencies:
+    - name: ditto
+      repository: https://eclipse.org/packages/charts/
+      version: =3.1.1
+    - name: OpenTwins-MongoDB
+      repository: https://ertis-research.github.io/Helm-charts/
+      version: ^0.1.0
+    - name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: ^6.50.7
+    - name: influxdb2
+      repository: https://helm.influxdata.com/
+      version: ^2.1.1
+    - name: telegraf
+      repository: https://helm.influxdata.com/
+      version: ^1.8.11
+    - name: mosquitto
+      repository: https://ertis-research.github.io/Helm-charts/
+      version: ^0.2.0
+    - name: hono
+      repository: https://eclipse.org/packages/charts/
+      version: ^2.1.0
+    description: Esta es una plataforma de codigo abierto orientada a gemelos digitales.
+    digest: b34de636d444597a0ddcddccdd24bee22616545d944f82ee30ac2d9fa64fbea4
+    keywords:
+    - iot-package
+    - IoT
+    - messaging
+    - digital twin
+    maintainers:
+    - email: sergioip@uma.es
+      name: sergioip
+    name: OpenTwins
+    sources:
+    - https://github.com/ertis-research/Helm-charts
+    urls:
+    - OpenTwins-0.4.0.tgz
+    version: 0.4.0
+  - apiVersion: v1
+    appVersion: 0.4.0
+    created: "2023-04-21T09:36:46.9912619+02:00"
     dependencies:
     - name: ditto
       repository: https://eclipse.org/packages/charts/
@@ -45,7 +86,7 @@ entries:
   OpenTwins-Lightweight:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2023-04-18T14:15:07.8554158+02:00"
+    created: "2023-04-21T09:36:46.9984214+02:00"
     dependencies:
     - name: mqtttomongo
       repository: https://ertis-research.github.io/Helm-charts/
@@ -78,7 +119,7 @@ entries:
   OpenTwins-MongoDB:
   - apiVersion: v2
     appVersion: 4.4.6
-    created: "2023-04-18T14:15:07.8565568+02:00"
+    created: "2023-04-21T09:36:46.9994226+02:00"
     description: This helm charts allows to install a compatible version of MongoDB
       far from the original version proposed by Eclipse Ditto
     digest: afbe1539ea99d1f6119a8cc5326b4e784c1ad45ebd8fac3f7713c74975331a33
@@ -90,7 +131,7 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: 1.6.10
-    created: "2023-04-18T14:15:07.8615873+02:00"
+    created: "2023-04-21T09:36:46.9994226+02:00"
     description: Eclipse Mosquitto - An open source MQTT broker
     digest: 90d50ac36e6f4321da95388b93e717e7610f4a8f542928676336d2647abd449a
     home: https://mosquitto.org/
@@ -109,7 +150,7 @@ entries:
   mqtttomongo:
   - apiVersion: v2
     appVersion: latest
-    created: "2023-04-18T14:15:07.8625874+02:00"
+    created: "2023-04-21T09:36:47.0004214+02:00"
     description: This application takes messages from MQTT server and save them into
       a MondoDB database
     digest: e35133eca303e570944e4235e3750968613906f23d93ac945b624a24596dcc83
@@ -124,4 +165,4 @@ entries:
     urls:
     - charts/mqtttomongo-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-18T14:15:07.8122546+02:00"
+generated: "2023-04-21T09:36:46.9297141+02:00"
