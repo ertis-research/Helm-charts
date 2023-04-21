@@ -3,7 +3,7 @@ entries:
   OpenTwins:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2023-04-21T09:45:06.995001+02:00"
+    created: "2023-04-21T09:46:26.4544681+02:00"
     dependencies:
     - name: ditto
       repository: https://eclipse.org/packages/charts/
@@ -45,7 +45,7 @@ entries:
   OpenTwins-Lightweight:
   - apiVersion: v1
     appVersion: 0.4.0
-    created: "2023-04-21T09:45:07.0025091+02:00"
+    created: "2023-04-21T09:46:26.4614674+02:00"
     dependencies:
     - name: mqtttomongo
       repository: https://ertis-research.github.io/Helm-charts/
@@ -78,7 +78,7 @@ entries:
   OpenTwins-MongoDB:
   - apiVersion: v2
     appVersion: 4.4.6
-    created: "2023-04-21T09:45:07.0035091+02:00"
+    created: "2023-04-21T09:46:26.4634674+02:00"
     description: This helm charts allows to install a compatible version of MongoDB
       far from the original version proposed by Eclipse Ditto
     digest: afbe1539ea99d1f6119a8cc5326b4e784c1ad45ebd8fac3f7713c74975331a33
@@ -90,7 +90,7 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: 1.6.10
-    created: "2023-04-21T09:45:07.0035091+02:00"
+    created: "2023-04-21T09:46:26.4634674+02:00"
     description: Eclipse Mosquitto - An open source MQTT broker
     digest: 90d50ac36e6f4321da95388b93e717e7610f4a8f542928676336d2647abd449a
     home: https://mosquitto.org/
@@ -109,7 +109,7 @@ entries:
   mqtttomongo:
   - apiVersion: v2
     appVersion: latest
-    created: "2023-04-21T09:45:07.004508+02:00"
+    created: "2023-04-21T09:46:26.464467+02:00"
     description: This application takes messages from MQTT server and save them into
       a MondoDB database
     digest: e35133eca303e570944e4235e3750968613906f23d93ac945b624a24596dcc83
@@ -124,4 +124,4 @@ entries:
     urls:
     - charts/mqtttomongo-1.0.0.tgz
     version: 1.0.0
-generated: "2023-04-21T09:45:06.963411+02:00"
+generated: "2023-04-21T09:46:26.4223215+02:00"
