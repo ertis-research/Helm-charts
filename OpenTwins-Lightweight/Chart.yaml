@@ -1,8 +1,9 @@
 apiVersion: v1
-version: 0.4.0
+version: 0.4.1
 appVersion: 0.4.0
 name: OpenTwins-Lightweight
-description: Esta es una plataforma de codigo abierto orientada a gemelos digitales.
+description:
+  Esta es una plataforma de codigo abierto orientada a gemelos digitales.
 keywords:
   - iot-package
   - IoT
