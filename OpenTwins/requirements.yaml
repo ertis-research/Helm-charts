@@ -1,7 +1,7 @@
 dependencies:
   - name: ditto
     version: ^3.3.2
-    repository: oci://registry-1.docker.io/eclipse/ditto
+    repository: oci://registry-1.docker.io/eclipse
   - name: OpenTwins-MongoDB
     version: ^0.1.0
     repository: "https://ertis-research.github.io/Helm-charts/"
