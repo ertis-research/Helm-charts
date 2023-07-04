@@ -4,7 +4,7 @@ dependencies:
     repository: "https://ertis-research.github.io/Helm-charts/"
   - name: ditto
     version: ^3.3.2
-    repository: oci://registry-1.docker.io/eclipse/ditto
+    repository: oci://registry-1.docker.io/eclipse
   - name: mosquitto
     version: ^0.2.0
     repository: "https://ertis-research.github.io/Helm-charts/"
