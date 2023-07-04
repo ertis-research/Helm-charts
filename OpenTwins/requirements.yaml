@@ -1,10 +1,10 @@
 dependencies:
   - name: ditto
-    version: =3.1.1
-    repository: "https://eclipse.org/packages/charts/"
+    version: ^3.3.2
+    repository: oci://registry-1.docker.io/eclipse/ditto
   - name: OpenTwins-MongoDB
     version: ^0.1.0
-    repository: "https://ertis-research.github.io/Helm-charts/"  
+    repository: "https://ertis-research.github.io/Helm-charts/"
   - name: grafana
     version: ^6.50.7
     repository: "https://grafana.github.io/helm-charts"
