@@ -1,0 +1,73 @@
+{{- if and .Values.telegraf.enabled }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: "opentwins-telegraf-real-config"
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+data:
+  telegraf.conf: |+
+    [agent]
+      collection_jitter = "0s"
+      debug = true
+      flush_interval = "10s"
+      flush_jitter = "0s"
+      hostname = "$HOSTNAME"
+      interval = "10s"
+      logfile = ""
+      metric_batch_size = 500000
+      metric_buffer_limit = 1000000
+      omit_hostname = false
+      precision = ""
+      quiet = false
+      round_interval = true
+
+{{- if and .Values.influxdb2.enabled .Values.connections.telegraf.target.influxdb2.enabled }}
+    [[outputs.influxdb_v2]]    
+      bucket = "{{ .Values.influxdb2.adminUser.bucket }}"
+      organization = "{{ .Values.influxdb2.adminUser.organization }}"
+      timeout = "120s"
+      token = "{{ .Values.influxdb2.adminUser.token }}"
+      urls = [
+        "http://{{ include "opentwins.influxdb2.fullname" . }}:1883"
+      ]
+{{- end }}
+
+{{- if and .Values.mosquitto.enabled .Values.connections.telegraf.source.mosquitto.enabled }}
+    [[processors.rename]]    
+      [[processors.rename.replace]]  
+        dest = "parent"
+        tag = "extra_attributes__parents"
+      [[processors.rename.replace]]  
+        dest = "originator"
+        tag = "headers_ditto-originator"
+      [[processors.rename.replace]]  
+        dest = "idSimulationRun"
+        tag = "extra_features_idSimulationRun_properties_value"
+      [[processors.rename.replace]]  
+        dest = "thingId"
+        tag = "extra_thingId"
+
+    [[inputs.mqtt_consumer]]    
+      data_format = "json"
+      qos = 1
+      servers = [
+        "tcp://{{ include "opentwins.mosquitto.fullname" . }}:1883"
+      ]
+      tag_keys = [
+        "extra_attributes__parents",
+        "extra_thingId",
+        "headers_ditto-originator",
+        "extra_features_idSimulationRun_properties_value",
+        "value_time_properties_value"
+      ]
+      topics = [
+        "{{ .Values.connections.ditto.target.mosquitto.address }}"
+      ]
+{{- end }}
+
+{{- end }}

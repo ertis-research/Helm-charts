@@ -1,0 +1,20 @@
+{
+    "name": "mosquitto-source-connection",
+    "connectionType": "mqtt-5",
+    "connectionStatus": "open",
+    "failoverEnabled": true,
+    "uri": "tcp://{{ include "opentwins.mosquitto.fullname" . }}:80",
+    "sources": [
+        {
+            "addresses": [
+                "{{ .Values.connections.ditto.source.mosquitto.address }}"
+            ],
+            "consumerCount": 1,
+            "qos": 0,
+            "authorizationContext": [
+                "nginx:ditto"
+            ]
+        }
+    ],
+    "targets": []
+}

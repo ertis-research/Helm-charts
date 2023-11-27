@@ -3,13 +3,15 @@ appVersion: 0.4.0
 description:
   Esta es una plataforma de codigo abierto orientada a gemelos digitales.
 keywords:
+  - opentwins
   - iot-package
   - IoT
-  - messaging
   - digital twin
 maintainers:
   - email: sergioip@uma.es
     name: sergioip
+  - email: juliarobles@uma.es
+    name: juliarobles
 name: OpenTwins
 sources:
   - https://github.com/ertis-research/Helm-charts

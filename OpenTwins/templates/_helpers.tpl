@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "OpenTwins.name" -}}
+{{- define "opentwins.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "OpenTwins.fullname" -}}
+{{- define "opentwins.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -34,16 +34,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "OpenTwins.chart" -}}
+{{- define "opentwins.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "OpenTwins.labels" -}}
-helm.sh/chart: {{ include "OpenTwins.chart" . }}
-{{ include "OpenTwins.selectorLabels" . }}
+{{- define "opentwins.labels" -}}
+helm.sh/chart: {{ include "opentwins.chart" . }}
+{{ include "opentwins.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -53,36 +53,66 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "OpenTwins.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "OpenTwins.name" . }}
+{{- define "opentwins.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "opentwins.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "OpenTwins.serviceAccountName" -}}
+{{- define "opentwins.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "OpenTwins.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "opentwins.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
 
-
-
-
-
 {{/*
-Expand the name of the chart.
+Get the full name of the Hono sub chart.
 */}}
-{{- define "ot.name" -}}
-  {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" -}}
+{{- define "opentwins.hono.fullname" -}}
+  {{- if .Values.hono.fullnameOverride }}
+    {{- .Values.hono.fullnameOverride | trunc 63 | trimSuffix "-" }}
+  {{- else }}
+    {{- $name := default "hono" .Values.hono.nameOverride }}
+    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+  {{- end -}}
 {{- end -}}
 
 {{/*
-Create chart name and version as used by the chart label.
+Get the full name of the Ditto sub chart.
 */}}
-{{- define "ot.chart" }}
-  {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- define "opentwins.ditto.fullname" -}}
+  {{- if .Values.ditto.fullnameOverride }}
+    {{- .Values.ditto.fullnameOverride | trunc 63 | trimSuffix "-" }}
+  {{- else }}
+    {{- $name := default "ditto" .Values.ditto.nameOverride }}
+    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+Get the full name of the Mosquitto sub chart.
+*/}}
+{{- define "opentwins.mosquitto.fullname" -}}
+  {{- if .Values.mosquitto.fullnameOverride }}
+    {{- .Values.mosquitto.fullnameOverride | trunc 63 | trimSuffix "-" }}
+  {{- else }}
+    {{- $name := default "mosquitto" .Values.mosquitto.nameOverride }}
+    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+  {{- end -}}
+{{- end -}}
+
+{{/*
+Get the full name of the InfluxDB2 sub chart.
+*/}}
+{{- define "opentwins.influxdb2.fullname" -}}
+  {{- if .Values.influxdb2.fullnameOverride }}
+    {{- .Values.influxdb2.fullnameOverride | trunc 63 | trimSuffix "-" }}
+  {{- else }}
+    {{- $name := default "influxdb2" .Values.influxdb2.nameOverride }}
+    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
+  {{- end -}}
+{{- end -}}

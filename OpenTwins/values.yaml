@@ -1,60 +1,121 @@
-# Configuration properties for Eclipse Ditto.
+# OpenTwins specific values
+##################################################################
+
+persistentVolumes:
+  grafana: false
+  hono: false
+  influxdb2: false
+
+
+# Automatic connections
+connections:
+  ditto:
+    source:
+      hono:
+        enabled: true
+        tenantName: ditto
+        username: "ditto"
+        password: "ditto"
+      mosquitto:
+        enabled: true
+        address: "telemetry/#"
+    target:
+      mosquitto:
+        enabled: true
+        address: "opentwins/#"
+      kafka:
+        enabled: false
+        topic: "opentwins"
+  
+  # The data received in Eclipse Ditto must be written to a messaging broker that acts as an intermediary with telegraf, the database collector. 
+  # This broker can be Kafka (kafka) or Mosquitto (mqtt). 
+  telegraf:
+    source:
+      mosquitto:
+        enabled: true
+    target:
+      influxdb2:
+        enabled: true
+
+
+
+# OpenTwins recommended values for Eclipse Ditto
+##################################################################
 ditto:
-  # do not set cpu limits for Ditto to avoid CFS scheduler limits
-  # ref: https://doc.akka.io/docs/akka/snapshot/additional/deploy.html#in-kubernetes
-  connectivity:
-    resources:
-      requests:
-        cpu: 200m
-      limits:
-        memory: "1Gi"
-
-  gateway:
-    resources:
-      requests:
-        cpu: 200m
-      limits:
-        memory: "768Mi"
-
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  nameOverride: ditto
+  global:
+    hashedBasicAuthUsers: false
+    basicAuthUsers:
+      ditto:
+        user: ditto
+        password: ditto
+      devops:
+        user: devops
+        password: foobar
   nginx:
     service:
       type: NodePort
       nodePort: 30525
-    resources:
-      requests:
-        cpu: 50m
-      limits:
-        cpu: 150m
-        memory: "32Mi"
-
-  policies:
-    resources:
-      requests:
-        cpu: 200m
-      limits:
-        memory: "768Mi"
-
   swaggerui:
     enabled: false
-
-  things:
-    resources:
-      requests:
-        cpu: 200m
-      limits:
-        memory: "768Mi"
-
-  thingsSearch:
-    resources:
-      requests:
-        cpu: 200m
-      limits:
-        memory: "768Mi"
-
   mongodb:
     enabled: false
-    
+  dbconfig:
+    connectivity:
+      uri: mongodb://opentwins-mongodb:27017/connectivity #{{ .Release.Name | tpl }}
+    things:
+      uri: mongodb://opentwins-mongodb:27017/things
+    searchDB:
+      uri: mongodb://opentwins-mongodb:27017/search
+    policies:
+      uri: mongodb://opentwins-mongodb:27017/policies
+  connectivity:
+    readinessProbe:
+      initialDelaySeconds: 30
+    livenessProbe:
+      initialDelaySeconds: 80
+  gateway:
+    config:
+      authentication:
+        enablePreAuthentication: true
+        devops:
+          devopsPassword: foobar
+          statusPassword: foobar
+
+
+
+# OpenTwins recommended values for Mosquitto
+##################################################################
+mosquitto:
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  nameOverride: mosquitto
+
+
+
+# OpenTwins recommended values for bitnami MongoDB
+##################################################################
 mongodb:
+  enabled: true
+  nameOverride: mongodb
+  service:
+    type: NodePort
+    nodePorts:
+      mongodb: 30717
+  persistence:
+    enabled: true
+  volumePermissions:
+    enabled: true
+  auth:
+    enabled: false
+
+
+
+# OpenTwins recommended values for ertis MongoDB 
+##################################################################
+OpenTwins-MongoDB:
+  enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
+  nameOverride: mongodb
   auth:
     enabled: false
   securityContext:
@@ -65,6 +126,9 @@ mongodb:
     labels:
       app: database
       selector: mongodb
+  service:
+    type: NodePort
+    nodePort: 30717
   spec:
     containers:
     - name: mongodb
@@ -77,106 +141,137 @@ mongodb:
       #   - name: MONGO_INITDB_ROOT_PASSWORD
       #     value: password
 
+
+
+# OpenTwins recommended values for Grafana
+##################################################################
 grafana:
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
   persistence:
     enabled: true
   service:
     type: NodePort
+    nodePort: 45718
   adminUser: admin
   adminPassword: admin
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: opentwins
+          type: influxdb
+          access: proxy
+          url: http://opentwins-influxdb2:80
+          isDefault: true
+          jsonData:
+            version: Flux
+            organization: "opentwins"
+            defaultBucket: "default"
+            tlsSkipVerify: true
+          secureJsonData:
+            token: "Hjh3ysMQ6evK=qqpFSYqn-s3JGovJLfHxyCDM=eNNZkdM-uuro93dNtJcodejLYYob2geKQ/29z3Kxui=y6FlL?dZeU9EFRxrYn284V/kZG5==jxLVAMJrYOv?LF79ahwIbhvstMN6gmfQ3DH7/IzUB7VlBZK-cd8aN7YqiFrYRLkBUv7H0QkbqPxgf2dMgCMCwZaLMk9RUeMaBfx2lQ=Mq1EEJJw-Jp!BmpCDnhlc!6D22PaE=Y3sgWWNhRv8oP"
 
+
+
+# OpenTwins recommended values for InfluxDB2
+##################################################################
 influxdb2:
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  nameOverride: influxdb2
   persistence:
-    storageClass: manual
+    enabled: true
   service:
     type: NodePort
   image:
     pullPolicy: Always
   adminUser:
-    password: password
+    organization: "opentwins"
+    bucket: "default"
+    password: "password"
+    token: "Hjh3ysMQ6evK=qqpFSYqn-s3JGovJLfHxyCDM=eNNZkdM-uuro93dNtJcodejLYYob2geKQ/29z3Kxui=y6FlL?dZeU9EFRxrYn284V/kZG5==jxLVAMJrYOv?LF79ahwIbhvstMN6gmfQ3DH7/IzUB7VlBZK-cd8aN7YqiFrYRLkBUv7H0QkbqPxgf2dMgCMCwZaLMk9RUeMaBfx2lQ=Mq1EEJJw-Jp!BmpCDnhlc!6D22PaE=Y3sgWWNhRv8oP"
 
-# Configuration properties for Eclipse Hono.
+
+
+# OpenTwins recommended values for Telegraf
+##################################################################
+telegraf:
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  config:
+
+# Do no modify
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    processors: [] 
+    outputs: [] 
+    inputs: [] 
+  service:
+    enabled: false 
+  volumes:
+    - name: my-config
+      configMap:
+        name: opentwins-telegraf-real-config
+  volumeMounts:
+    - name: my-config
+      mountPath: /additional_config
+  args:
+    - "--config=/etc/telegraf/telegraf.conf"
+    - "--config-directory=/additional_config"
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+# OpenTwins recommended values for Eclipse Hono
+##################################################################
 hono:
-
+  enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
+  nameOverride: hono
+  prometheus:
+    createInstance: false
+  grafana:
+    enabled: false
+  useLoadBalancer: false
+  probes:
+    livenessProbe:
+      initialDelaySeconds: 900
+    readinessProbe:
+      initialDelaySeconds: 45
+  messagingNetworkTypes:
+  - "amqp"
   kafka:
     auth:
       sasl:
         jaas:
           clientUsers:
             - "hono"
-            - "ditto-c2e"
+            - "ditto"
           clientPasswords:
             - "hono-secret"
-            - "verysecret"
-
-  livenessProbeInitialDelaySeconds: 900
-  readinessProbeInitialDelaySeconds: 45
-  useLoadBalancer: true
-
-  prometheus:
-    createInstance: false
-
-  grafana:
+            - "ditto"
+  kafkaMessagingClusterExample:
     enabled: false
-
   amqpMessagingNetworkExample:
-    dispatchRouter:
-      resources:
-        requests:
-          cpu: 200m
-    broker:
-      artemis:
-        resources:
-          requests:
-            cpu: 200m
-
-  # authServer:
-  #   resources:
-  #     requests:
-  #       cpu: "200m"
-  #       memory: "196Mi"
-  #     limits:
-  #       cpu: "1"
-  #       memory: "256Mi"
-  #   extraVolumes:
-  #     - name: "permissions"
-  #       secret:
-  #         secretName: "permissions"
-  #   extraVolumeMounts:
-  #     - name: "permissions"
-  #       mountPath: "/var/run/hono/auth"
-  #   hono:
-  #     auth:
-  #       svc:
-  #         permissionsPath: "/var/run/hono/auth/permissions.json"
-  #         supportedSaslMechanisms: "PLAIN"
-  #         signing:
-  #           # tokenExpiration contains the number of seconds after which tokens issued
-  #           # by the Auth server will expire.
-  #           tokenExpiration: 3600
-
+    enabled: true
   deviceRegistryExample:
     type: mongodb
+    addExampleData: false
     mongoDBBasedDeviceRegistry:
-      resources:
-        requests:
-          cpu: 200m
       mongodb:
-      #By the moment, you have to write here the installation name instead of ot if you want to set you own.
-        host: ot-mongodb
+        host: opentwins-mongodb
         port: 27017
         dbName: hono
-
-  adapters:
-    amqp:
-      resources:
-        requests:
-          cpu: 200m
-    http:
-      resources:
-        requests:
-          cpu: 200m
+    hono:
+      registry:
+          http:
+            insecurePortEnabled: true
+  adapters: # This needs to be defined for the Eclipse Hono Helm to work (it seems to be a bug)
     mqtt:
-      resources:
-        requests:
-          cpu: 200m
+      hono:
+        mqtt:
+          insecurePortEnabled: true
+    http:
+      hono:
+        http:
+          insecurePortEnabled: true
+    amqp:
+      hono:
+        amqp:
+          insecurePortEnabled: true
