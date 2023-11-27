@@ -6,7 +6,7 @@ Ertis Research group Helm Chart repository
 ## Main helm chart list
 |Name                   |Chart version| Aplication version |
 |-----------------------|-------------|--------------------|
-|OpenTwins              |0.4.0        | Beta 0.1           |
+|OpenTwins              |0.5.0        | Beta 0.1           |
 |OpenTwins Lightweight  |0.4.0        | Beta 0.1           |
 
 
