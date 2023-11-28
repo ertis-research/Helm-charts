@@ -33,7 +33,7 @@ data:
       timeout = "120s"
       token = "{{ .Values.influxdb2.adminUser.token }}"
       urls = [
-        "http://{{ include "opentwins.influxdb2.fullname" . }}:1883"
+        "http://{{ include "opentwins.influxdb2.fullname" . }}:80"
       ]
 {{- end }}
 
