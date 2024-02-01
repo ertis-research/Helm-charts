@@ -3,7 +3,7 @@ entries:
   OpenTwins-MongoDB:
   - apiVersion: v2
     appVersion: 4.4.6
-    created: "2023-11-27T18:01:19.5859677+09:00"
+    created: "2024-02-01T12:00:32.8747377+01:00"
     description: This helm charts allows to install a compatible version of MongoDB
       far from the original version proposed by Eclipse Ditto
     digest: afbe1539ea99d1f6119a8cc5326b4e784c1ad45ebd8fac3f7713c74975331a33
@@ -14,8 +14,8 @@ entries:
     version: 0.1.0
   ditto:
   - apiVersion: v2
-    appVersion: 3.3.3
-    created: "2023-11-27T18:01:19.600093+09:00"
+    appVersion: 3.3.7
+    created: "2024-02-01T12:00:32.8895785+01:00"
     dependencies:
     - condition: mongodb.enabled
       name: mongodb
@@ -25,7 +25,7 @@ entries:
       pattern called “digital twins”. A digital twin is a virtual, cloud based, representation
       of his real world counterpart (real world “Things”, e.g. devices like sensors,
       smart heating, connected cars, smart grids, EV charging stations etc). '
-    digest: 852000a6c43b4e03be2d6dd624272edbb85a72ff0e3d0a954cd31b2871c09b0b
+    digest: ba1b4b2bf229519ac53dcdf87a7b01d5f8ed59bf52dc7150e7f393d9a9eb6a7c
     home: https://www.eclipse.dev/ditto
     icon: https://www.eclipse.dev/ditto/images/ditto.svg
     keywords:
@@ -40,8 +40,8 @@ entries:
     - https://github.com/eclipse-ditto/ditto
     type: application
     urls:
-    - charts/ditto-3.3.3.tgz
-    version: 3.3.3
+    - charts/ditto-3.3.7.tgz
+    version: 3.3.7
   grafana:
   - annotations:
       artifacthub.io/links: |
@@ -51,7 +51,7 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 9.5.2
-    created: "2023-11-27T18:01:19.6057668+09:00"
+    created: "2024-02-01T12:00:32.8938087+01:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: f7ff282c76a6136022d52c740c28de356d8a7b2392f268476b18b0eab0b405a7
     home: https://grafana.net
@@ -79,7 +79,7 @@ entries:
   hono:
   - apiVersion: v2
     appVersion: 2.4.0
-    created: "2023-11-27T18:01:19.6502923+09:00"
+    created: "2024-02-01T12:00:32.9316366+01:00"
     dependencies:
     - condition: prometheus.createInstance
       name: prometheus
@@ -124,10 +124,10 @@ entries:
     version: 2.5.6
   influxdb2:
   - apiVersion: v2
-    appVersion: 2.3.0
-    created: "2023-11-27T18:01:19.6515259+09:00"
+    appVersion: 2.7.4
+    created: "2024-02-01T12:00:32.9337624+01:00"
     description: A Helm chart for InfluxDB v2
-    digest: af5bf55f07e03b94cc275f606f00198512aea467a41c329fead1216344ebd360
+    digest: 1da8b1e8a2b93e9acbb0bc9a9c0a3e526581ccde4bf271785d09699ed219ca08
     home: https://www.influxdata.com/products/influxdb/
     icon: https://avatars0.githubusercontent.com/u/5713248?s=200&v=4
     maintainers:
@@ -138,15 +138,64 @@ entries:
     name: influxdb2
     type: application
     urls:
-    - charts/influxdb2-2.1.1.tgz
-    version: 2.1.1
+    - charts/influxdb2-2.1.2.tgz
+    version: 2.1.2
+  kafka:
+  - annotations:
+      category: Infrastructure
+      images: |
+        - name: jmx-exporter
+          image: docker.io/bitnami/jmx-exporter:0.20.0-debian-11-r1
+        - name: kafka-exporter
+          image: docker.io/bitnami/kafka-exporter:1.7.0-debian-11-r134
+        - name: kafka
+          image: docker.io/bitnami/kafka:3.6.1-debian-11-r0
+        - name: kubectl
+          image: docker.io/bitnami/kubectl:1.28.4-debian-11-r2
+        - name: os-shell
+          image: docker.io/bitnami/os-shell:11-debian-11-r92
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 3.6.1
+    created: "2024-02-01T12:00:32.9464312+01:00"
+    dependencies:
+    - condition: zookeeper.enabled
+      name: zookeeper
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 12.x.x
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Apache Kafka is a distributed streaming platform designed to build
+      real-time pipelines and can be used as a message broker or as a replacement
+      for a log aggregation solution for big data applications.
+    digest: b7322bb4b6af042fc043a63e9b4ad79866705811037f917fba7f9d1d006e4d2f
+    home: https://bitnami.com
+    icon: https://bitnami.com/assets/stacks/kafka/img/kafka-stack-220x234.png
+    keywords:
+    - kafka
+    - zookeeper
+    - streaming
+    - producer
+    - consumer
+    maintainers:
+    - name: VMware, Inc.
+      url: https://github.com/bitnami/charts
+    name: kafka
+    sources:
+    - https://github.com/bitnami/charts/tree/main/bitnami/kafka
+    urls:
+    - charts/kafka-26.4.5.tgz
+    version: 26.4.5
   mongodb:
   - annotations:
       category: Database
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 6.0.4
-    created: "2023-11-27T18:01:19.6576428+09:00"
+    created: "2024-02-01T12:00:32.9524343+01:00"
     dependencies:
     - name: common
       repository: oci://registry-1.docker.io/bitnamicharts
@@ -179,7 +228,7 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: 1.6.10
-    created: "2023-11-27T18:01:19.6591471+09:00"
+    created: "2024-02-01T12:00:32.9544343+01:00"
     description: Eclipse Mosquitto - An open source MQTT broker
     digest: 90d50ac36e6f4321da95388b93e717e7610f4a8f542928676336d2647abd449a
     home: https://mosquitto.org/
@@ -197,11 +246,11 @@ entries:
     version: 0.2.0
   telegraf:
   - apiVersion: v2
-    appVersion: 1.28.5
-    created: "2023-11-27T18:01:19.6611672+09:00"
+    appVersion: 1.29.2
+    created: "2024-02-01T12:00:32.9544343+01:00"
     description: Telegraf is an agent written in Go for collecting, processing, aggregating,
       and writing metrics.
-    digest: f690b9ad41ef014e48437b3d2c42f9a3db8b058484e6a5e76c4232ce9e53f2e5
+    digest: fea4d85bd23452ecab1d83e905f68d45df19c5678333fe400737576749549045
     home: https://www.influxdata.com/time-series-platform/telegraf/
     icon: https://avatars0.githubusercontent.com/u/5713248?s=200&v=4
     keywords:
@@ -221,6 +270,6 @@ entries:
     - https://github.com/influxdata/helm-charts/tree/master/charts/telegraf
     - https://github.com/influxdata/helm-charts/
     urls:
-    - charts/telegraf-1.8.38.tgz
-    version: 1.8.38
-generated: "2023-11-27T18:01:19.5854463+09:00"
+    - charts/telegraf-1.8.40.tgz
+    version: 1.8.40
+generated: "2024-02-01T12:00:32.8728891+01:00"
