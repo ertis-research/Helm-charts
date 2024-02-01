@@ -93,66 +93,16 @@ ditto:
 # OpenTwins recommended values for Mosquitto
 ##################################################################
 mosquitto:
-  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
   nameOverride: mosquitto
 
 
 
-# OpenTwins recommended values for bitnami MongoDB
+# OpenTwins recommended values for Kafka
 ##################################################################
-mongodb:
+kafka:
   enabled: true
-  nameOverride: mongodb
-  service:
-    type: NodePort
-    nodePorts:
-      mongodb: 30717
-  persistence:
-    enabled: true
-  volumePermissions:
-    enabled: true
-  auth:
-    enabled: false
-
-
-
-# OpenTwins recommended values for Grafana
-##################################################################
-grafana:
-  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
-  persistence:
-    enabled: true
-  service:
-    type: NodePort
-    nodePort: 45718
-  adminUser: admin
-  adminPassword: admin
-  sidecar:
-    datasources:
-      enabled: true
-
-
-# OpenTwins recommended values for InfluxDB2
-##################################################################
-influxdb2:
-  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
-  nameOverride: influxdb2
-  persistence:
-    enabled: true
-  service:
-    type: NodePort
-  image:
-    pullPolicy: Always
-  adminUser:
-    organization: "opentwins"
-    bucket: "default"
-    password: "password"
-# ----------------------------------------------
-# We have generated this token randomly in this page: https://generate-random.org/api-token-generator
-# We recommend to generate one of your own and assign it to this value in your values file.
-    token: "Hjh3ysMQ6evK=qqpFSYqn-s3JGovJLfHxyCDM=eNNZkdM-uuro93dNtJcodejLYYob2geKQ/29z3Kxui=y6FlL?dZeU9EFRxrYn284V/kZG5==jxLVAMJrYOv?LF79ahwIbhvstMN6gmfQ3DH7/IzUB7VlBZK-cd8aN7YqiFrYRLkBUv7H0QkbqPxgf2dMgCMCwZaLMk9RUeMaBfx2lQ=Mq1EEJJw-Jp!BmpCDnhlc!6D22PaE=Y3sgWWNhRv8oP"
-# ----------------------------------------------
-
+  
 
 
 # OpenTwins recommended values for Telegraf
@@ -179,6 +129,45 @@ telegraf:
     - "--config=/etc/telegraf/telegraf.conf"
     - "--config-directory=/additional_config"
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+# OpenTwins recommended values for InfluxDB2
+##################################################################
+influxdb2:
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  nameOverride: influxdb2
+  persistence:
+    enabled: true
+  service:
+    type: NodePort
+  image:
+    pullPolicy: Always
+  adminUser:
+    organization: "opentwins"
+    bucket: "default"
+    password: "password"
+# ----------------------------------------------
+# We have generated this token randomly in this page: https://generate-random.org/api-token-generator
+# We recommend to generate one of your own and assign it to this value in your values file.
+    token: "Hjh3ysMQ6evK=qqpFSYqn-s3JGovJLfHxyCDM=eNNZkdM-uuro93dNtJcodejLYYob2geKQ/29z3Kxui=y6FlL?dZeU9EFRxrYn284V/kZG5==jxLVAMJrYOv?LF79ahwIbhvstMN6gmfQ3DH7/IzUB7VlBZK-cd8aN7YqiFrYRLkBUv7H0QkbqPxgf2dMgCMCwZaLMk9RUeMaBfx2lQ=Mq1EEJJw-Jp!BmpCDnhlc!6D22PaE=Y3sgWWNhRv8oP"
+# ----------------------------------------------
+
+
+
+# OpenTwins recommended values for Grafana
+##################################################################
+grafana:
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  persistence:
+    enabled: true
+  service:
+    type: NodePort
+    nodePort: 45718
+  adminUser: admin
+  adminPassword: admin
+  sidecar:
+    datasources:
+      enabled: true
 
 
 
@@ -241,6 +230,24 @@ hono:
 
 
 
+# OpenTwins recommended values for bitnami MongoDB
+##################################################################
+mongodb:
+  enabled: true
+  nameOverride: mongodb
+  service:
+    type: NodePort
+    nodePorts:
+      mongodb: 30717
+  persistence:
+    enabled: true
+  volumePermissions:
+    enabled: true
+  auth:
+    enabled: false
+
+
+
 # OpenTwins recommended values for ertis MongoDB 
 ##################################################################
 OpenTwins-MongoDB:
@@ -258,7 +265,7 @@ OpenTwins-MongoDB:
       selector: mongodb
   service:
     type: NodePort
-    nodePort: 30717
+    nodePort: 30718
   spec:
     containers:
     - name: mongodb

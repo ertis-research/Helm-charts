@@ -1,6 +1,6 @@
 dependencies:
   - name: ditto
-    version: 3.3.3
+    version: 3.3.7
     repository: "oci://registry-1.docker.io/eclipse"
     condition: ditto.enabled
     tags:
@@ -47,6 +47,13 @@ dependencies:
     condition: mosquitto.enabled 
     tags:
       - mosquitto
+      - essencial
+  - name: kafka
+    version: ~26.4.2
+    repository: "oci://registry-1.docker.io/bitnamicharts"
+    condition: kafka.enabled 
+    tags:
+      - kafka
       - essencial
   - name: hono
     version: ^2.5.5
