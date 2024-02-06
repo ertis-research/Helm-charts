@@ -165,10 +165,29 @@ grafana:
     nodePort: 45718
   adminUser: admin
   adminPassword: admin
+  grafana.ini:
+    plugins:
+      plugin_admin_enabled: true
+      allow_loading_unsigned_plugins: opentwins
   sidecar:
     datasources:
       enabled: true
-
+  extraInitContainers:
+  - name: install-opentwins-plugins
+    image: busybox
+    command:
+      - /bin/sh
+      - -c
+      - |
+        #!/bin/sh
+        set -euo pipefail
+        mkdir -p /grafana-storage/plugins
+        cd /grafana-storage/plugins
+        wget https://github.com/ertis-research/opentwins-in-grafana/releases/download/latest/opentwins.zip
+        unzip opentwins.zip
+    volumeMounts:
+    - name: storage
+      mountPath: /grafana-storage
 
 
 # OpenTwins recommended values for Eclipse Hono
