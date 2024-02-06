@@ -101,7 +101,7 @@ mosquitto:
 # OpenTwins recommended values for Kafka
 ##################################################################
 kafka:
-  enabled: true
+  enabled: false
   
 
 
@@ -247,8 +247,35 @@ mongodb:
     enabled: false
 
 
+# OpenTwins recommended values for Ditto Extended API
+##################################################################
+extendedAPI:
+  enabled: true
+  allLogs: false
+  service:
+    port: 8080
+    nodePort: 30526
+# ----------------------------------------------
+# If you want to use another instance of Eclipse Ditto or configure it manually
+#
+#  ditto:
+#    uri: http://research.adabyron.uma.es:8047
+#    credentials:
+#      basic:
+#        user: ditto
+#        password: ditto
+#      devops:
+#        user: devops
+#        password: foobar
+# ----------------------------------------------
+#  If you use another mongodb and you want to query all the policies
+#
+#  mongodb:
+#    uri: mongodb://localhost:30185/policies
+      
 
-# OpenTwins recommended values for ertis MongoDB 
+
+# OpenTwins recommended values for ERTIS MongoDB 
 ##################################################################
 OpenTwins-MongoDB:
   enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
