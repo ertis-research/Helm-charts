@@ -1,17 +1,32 @@
-# OpenTwins specific values
+####################################################################################################################################
+# OpenTwins helm chart
+# Authors: Julia Robles, Sergio Infante, Altair Bueno
+####################################################################################################################################
+
+
+
+# Example digital twin
 ##################################################################
+example:
+  enabled: true
 
 
+
+# Persistent volumes
 # Enabling these persistent volumes or not will depend on how your Kubernetes cluster works. 
 # In our case, the cluster creates them automatically, so we don't need to activate them. 
 # In other clusters we have seen that they are not created automatically, so to enable persistence it will be necessary to activate them.
+##################################################################
 persistentVolumes:
   grafana: false
   hono: false
   influxdb2: false
 
 
-# Automatic connections
+
+# OpenTwins connections
+# Components can be automatically connected during installation.
+##################################################################
 connections:
   ditto:
     source:
@@ -39,7 +54,17 @@ connections:
         enabled: true
     target:
       influxdb2:
-        enabled: true
+        enabled: true       
+
+
+# If you need to work with your own InfluxDB2 or connect more than one, you can add them here as a list.
+# They will automatically connect to Grafana and Telegraf (if enabled).
+externalInfluxdb2: {}
+#  - name: anyName # Do not use hyphens or underscores
+#    url: https://anyPlace/
+#    bucket: anyBucket
+#    organization: anyOrganization
+#    token: anyToken
 
 
 
@@ -93,7 +118,7 @@ ditto:
 # OpenTwins recommended values for Mosquitto
 ##################################################################
 mosquitto:
-  enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
+  enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
   nameOverride: mosquitto
 
 
@@ -131,6 +156,7 @@ telegraf:
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
+
 # OpenTwins recommended values for InfluxDB2
 ##################################################################
 influxdb2:
@@ -146,11 +172,11 @@ influxdb2:
     organization: "opentwins"
     bucket: "default"
     password: "password"
-# ----------------------------------------------
-# We have generated this token randomly in this page: https://generate-random.org/api-token-generator
-# We recommend to generate one of your own and assign it to this value in your values file.
+  # ----------------------------------------------
+  # We have generated this token randomly in this page: https://generate-random.org/api-token-generator
+  # We recommend to generate one of your own and assign it to this value in your values file.
     token: "Hjh3ysMQ6evK=qqpFSYqn-s3JGovJLfHxyCDM=eNNZkdM-uuro93dNtJcodejLYYob2geKQ/29z3Kxui=y6FlL?dZeU9EFRxrYn284V/kZG5==jxLVAMJrYOv?LF79ahwIbhvstMN6gmfQ3DH7/IzUB7VlBZK-cd8aN7YqiFrYRLkBUv7H0QkbqPxgf2dMgCMCwZaLMk9RUeMaBfx2lQ=Mq1EEJJw-Jp!BmpCDnhlc!6D22PaE=Y3sgWWNhRv8oP"
-# ----------------------------------------------
+  # ----------------------------------------------
 
 
 

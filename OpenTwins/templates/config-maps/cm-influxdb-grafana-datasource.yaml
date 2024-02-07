@@ -1,4 +1,4 @@
-{{- if and .Values.grafana.enabled .Values.influxdb2.enabled }}
+{{- if and .Values.grafana.enabled (or .Values.influxdb2.enabled .Values.externalInfluxdb2) }}
 
 apiVersion: v1
 kind: ConfigMap
@@ -14,6 +14,7 @@ data:
   datasources.yaml: |+
     apiVersion: 1
     datasources:
+{{- if .Values.influxdb2.enabled }}
       - name: opentwins
         type: influxdb
         access: proxy
@@ -26,5 +27,22 @@ data:
           tlsSkipVerify: true
         secureJsonData:
           token: "{{ .Values.influxdb2.adminUser.token }}"
+{{- end }}
+{{- if .Values.externalInfluxdb2 }}
+  {{- range $v := .Values.externalInfluxdb2 }}
+      - name: {{ $v.name }}
+        type: influxdb
+        access: proxy
+        url: {{ $v.url }}
+        isDefault: false
+        jsonData:
+          version: Flux
+          organization: "{{ $v.organization }}"
+          defaultBucket: "{{ $v.bucket }}"
+          tlsSkipVerify: true
+        secureJsonData:
+          token: "{{ $v.token }}"
+  {{- end }}
+{{- end }}
 
 {{- end }}

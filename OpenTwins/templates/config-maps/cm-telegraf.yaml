@@ -37,6 +37,19 @@ data:
       ]
 {{- end }}
 
+{{- if and .Values.externalInfluxdb2 .Values.connections.telegraf.target.influxdb2.enabled }}
+  {{- range $v := .Values.externalInfluxdb2 }}
+    [[outputs.influxdb_v2]]    
+      bucket = "{{ $v.bucket }}"
+      organization = "{{ $v.organization }}"
+      timeout = "120s"
+      token = "{{ $v.token }}"
+      urls = [
+        "{{ $v.url }}"
+      ]
+  {{- end }}
+{{- end }}
+
 {{- if and .Values.mosquitto.enabled .Values.connections.telegraf.source.mosquitto.enabled }}
     [[processors.rename]]    
       [[processors.rename.replace]]  
