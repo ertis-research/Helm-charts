@@ -3,6 +3,91 @@ entries:
   OpenTwins:
   - apiVersion: v1
     appVersion: 0.5.0
+    created: "2024-02-07T11:33:22.318506551Z"
+    dependencies:
+    - condition: ditto.enabled
+      name: ditto
+      repository: oci://registry-1.docker.io/eclipse
+      tags:
+      - ditto
+      - essencial
+      version: 3.3.7
+    - condition: mongodb.enabled
+      name: mongodb
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - mongodb
+      - essencial
+      version: ~13.8.3
+    - condition: OpenTwins-MongoDB.enabled
+      name: OpenTwins-MongoDB
+      repository: https://ertis-research.github.io/Helm-charts/
+      tags:
+      - mongodb
+      - essencial
+      version: ~0.1.0
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      tags:
+      - grafana
+      - essencial
+      version: ~6.56.1
+    - condition: influxdb2.enabled
+      name: influxdb2
+      repository: https://helm.influxdata.com/
+      tags:
+      - influxdb2
+      - essencial
+      version: ~2.1.1
+    - condition: telegraf.enabled
+      name: telegraf
+      repository: https://helm.influxdata.com/
+      tags:
+      - telegraf
+      - essencial
+      version: ^1.8.27
+    - condition: mosquitto.enabled
+      name: mosquitto
+      repository: https://ertis-research.github.io/Helm-charts/
+      tags:
+      - mosquitto
+      - essencial
+      version: ~0.2.0
+    - condition: kafka.enabled
+      name: kafka
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - kafka
+      - essencial
+      version: ~26.4.2
+    - condition: hono.enabled
+      name: hono
+      repository: https://eclipse.org/packages/charts/
+      tags:
+      - hono
+      - essencial
+      version: ^2.5.5
+    description: Esta es una plataforma de codigo abierto orientada a gemelos digitales.
+    digest: 56112313a6e9ee6e09121627af48ad329d3670c87e9c44172a22bdffcf9a193e
+    keywords:
+    - opentwins
+    - iot-package
+    - IoT
+    - digital twin
+    maintainers:
+    - email: sergioip@uma.es
+      name: sergioip
+    - email: juliarobles@uma.es
+      name: juliarobles
+    name: OpenTwins
+    sources:
+    - https://github.com/ertis-research/Helm-charts
+    urls:
+    - https://github.com/ertis-research/Helm-charts/releases/download/OpenTwins-0.5.7/OpenTwins-0.5.7.tgz
+    version: 0.5.7
+  - apiVersion: v1
+    appVersion: 0.5.0
     created: "2024-02-07T08:40:38.618437101Z"
     dependencies:
     - condition: ditto.enabled
@@ -659,4 +744,4 @@ entries:
     urls:
     - charts/mqtttomongo-1.0.0.tgz
     version: 1.0.0
-generated: "2024-02-07T08:40:38.618460174Z"
+generated: "2024-02-07T11:33:22.318535055Z"
