@@ -162,7 +162,7 @@ grafana:
     enabled: true
   service:
     type: NodePort
-    nodePort: 45718
+    nodePort: 30718
   adminUser: admin
   adminPassword: admin
   grafana.ini:
