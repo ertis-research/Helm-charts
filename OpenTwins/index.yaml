@@ -1,21 +1,9 @@
 apiVersion: v1
 entries:
-  OpenTwins-MongoDB:
-  - apiVersion: v2
-    appVersion: 4.4.6
-    created: "2024-02-07T10:12:45.0223467+01:00"
-    description: This helm charts allows to install a compatible version of MongoDB
-      far from the original version proposed by Eclipse Ditto
-    digest: afbe1539ea99d1f6119a8cc5326b4e784c1ad45ebd8fac3f7713c74975331a33
-    name: OpenTwins-MongoDB
-    type: application
-    urls:
-    - charts/OpenTwins-MongoDB-0.1.0.tgz
-    version: 0.1.0
   ditto:
   - apiVersion: v2
     appVersion: 3.3.7
-    created: "2024-02-07T10:12:45.0399376+01:00"
+    created: "2024-02-09T14:15:53.7047428+01:00"
     dependencies:
     - condition: mongodb.enabled
       name: mongodb
@@ -51,7 +39,7 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 9.5.2
-    created: "2024-02-07T10:12:45.0452477+01:00"
+    created: "2024-02-09T14:15:53.7070023+01:00"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: f7ff282c76a6136022d52c740c28de356d8a7b2392f268476b18b0eab0b405a7
     home: https://grafana.net
@@ -79,7 +67,7 @@ entries:
   hono:
   - apiVersion: v2
     appVersion: 2.4.0
-    created: "2024-02-07T10:12:45.0929041+01:00"
+    created: "2024-02-09T14:15:53.7342764+01:00"
     dependencies:
     - condition: prometheus.createInstance
       name: prometheus
@@ -125,7 +113,7 @@ entries:
   influxdb2:
   - apiVersion: v2
     appVersion: 2.7.4
-    created: "2024-02-07T10:12:45.09401+01:00"
+    created: "2024-02-09T14:15:53.7342764+01:00"
     description: A Helm chart for InfluxDB v2
     digest: 1da8b1e8a2b93e9acbb0bc9a9c0a3e526581ccde4bf271785d09699ed219ca08
     home: https://www.influxdata.com/products/influxdb/
@@ -157,7 +145,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 3.6.1
-    created: "2024-02-07T10:12:45.1085164+01:00"
+    created: "2024-02-09T14:15:53.7438109+01:00"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -195,7 +183,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 6.0.4
-    created: "2024-02-07T10:12:45.1180304+01:00"
+    created: "2024-02-09T14:15:53.7487979+01:00"
     dependencies:
     - name: common
       repository: oci://registry-1.docker.io/bitnamicharts
@@ -228,7 +216,7 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: 1.6.10
-    created: "2024-02-07T10:12:45.1210319+01:00"
+    created: "2024-02-09T14:15:53.7498006+01:00"
     description: Eclipse Mosquitto - An open source MQTT broker
     digest: 90d50ac36e6f4321da95388b93e717e7610f4a8f542928676336d2647abd449a
     home: https://mosquitto.org/
@@ -246,11 +234,11 @@ entries:
     version: 0.2.0
   telegraf:
   - apiVersion: v2
-    appVersion: 1.29.2
-    created: "2024-02-07T10:12:45.1240353+01:00"
+    appVersion: 1.29.4
+    created: "2024-02-09T14:15:53.7518033+01:00"
     description: Telegraf is an agent written in Go for collecting, processing, aggregating,
       and writing metrics.
-    digest: fea4d85bd23452ecab1d83e905f68d45df19c5678333fe400737576749549045
+    digest: d108d839f7fc5c31cc69f2e9dea31313925a54e06af3ee073329f0b84921d75c
     home: https://www.influxdata.com/time-series-platform/telegraf/
     icon: https://avatars0.githubusercontent.com/u/5713248?s=200&v=4
     keywords:
@@ -270,6 +258,6 @@ entries:
     - https://github.com/influxdata/helm-charts/tree/master/charts/telegraf
     - https://github.com/influxdata/helm-charts/
     urls:
-    - charts/telegraf-1.8.40.tgz
-    version: 1.8.40
-generated: "2024-02-07T10:12:45.021171+01:00"
+    - charts/telegraf-1.8.41.tgz
+    version: 1.8.41
+generated: "2024-02-09T14:15:53.6945463+01:00"

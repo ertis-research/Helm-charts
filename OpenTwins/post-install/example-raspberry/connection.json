@@ -1,0 +1,35 @@
+{
+    "name": "example-raspberry-source-connection",
+    "connectionType": "mqtt-5",
+    "connectionStatus": "open",
+    "failoverEnabled": true,
+    "uri": "tcp://broker.hivemq.com:1883",
+    "sources": [
+        {
+            "addresses": [
+                "opentwins-example/dont-copy/only-example/very-insecure/dht22_1",
+                "opentwins-example/dont-copy/only-example/very-insecure/dht22_2"
+            ],
+            "consumerCount": 1,
+            "qos": 0,
+            "authorizationContext": [
+                "pre-authenticated:insecure-external-hiveml"
+            ],
+            "payloadMapping": ["javascript"],
+            "headerMapping": {
+                "topic": {{ printf "\"{{ header:mqtt.topic }}\"" }},
+                "the-qos": {{ printf "\"{{ header:mqtt.qos }}\"" }}
+                
+            }
+        }
+    ],
+    "targets": [],
+    "mappingDefinitions": {
+        "javascript" : {
+            "mappingEngine" : "JavaScript",
+            "options" : {
+                "incomingScript" : "function mapToDittoProtocolMsg(headers, textPayload, bytePayload, contentType) { const jsonData = JSON.parse(textPayload); const temperature = jsonData[\u0027temp\u0027]; const humidity = jsonData[\u0027hum\u0027]; const topic_split = headers[\u0027topic\u0027].split(\u0027/\u0027); const id = topic_split[topic_split.length-1]; headers = Object.assign(headers, { \u0027Content-Type\u0027: \u0027application/merge-patch+json\u0027 }); const features = { temperature: { properties: { value: temperature, time: Date.now() } }, humidity: { properties: { value: humidity, time: Date.now() } } }; return Ditto.buildDittoProtocolMsg( \u0027example\u0027, id, \u0027things\u0027, \u0027twin\u0027, \u0027commands\u0027, \u0027merge\u0027, \u0027/features\u0027, headers, features ); }"
+            }
+        }   
+    }
+}

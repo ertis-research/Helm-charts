@@ -121,19 +121,17 @@ Get the full name of the InfluxDB2 sub chart.
 Get the full name of the MongoDB sub chart.
 */}}
 {{- define "opentwins.mongodb.fullname" -}}
-  {{- if .Values.mongodb.enabled }}
-    {{- if .Values.mongodb.fullnameOverride }}
-      {{- .Values.mongodb.fullnameOverride | trunc 63 | trimSuffix "-" }}
-    {{- else }}
-      {{- $name := default "mongodb" .Values.mongodb.nameOverride }}
-      {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-    {{- end -}}
+  {{- if .Values.mongodb.fullnameOverride }}
+    {{- .Values.mongodb.fullnameOverride | trunc 63 | trimSuffix "-" }}
   {{- else }}
-    {{- if .Values "OpenTwins-MongoDB" "fullnameOverride" }}
-      {{- .Values "OpenTwins-MongoDB" "fullnameOverride" | trunc 63 | trimSuffix "-" }}
-    {{- else }}
-      {{- $name := default "mongodb" .Values "OpenTwins-MongoDB" "nameOverride" }}
-      {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-    {{- end -}}
+    {{- $name := default "mongodb" .Values.mongodb.nameOverride }}
+    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
   {{- end -}}
+{{- end -}}
+
+{{/*
+Get the full name of Extended API.
+*/}}
+{{- define "opentwins.extendedAPI.fullname" -}}
+  {{- printf "%s-ditto-extended-api" | trunc 63 | trimSuffix "-" }}
 {{- end -}}

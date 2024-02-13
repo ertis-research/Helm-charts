@@ -1,0 +1,52 @@
+{{- if and .Values.example.enabled }}
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "{{ .Release.Name }}-post-install-example-raspberry"
+  labels:
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+  annotations:
+    # Esto es lo que define este recurso como un gancho. Sin esta línea, 
+    # el trabajo se considera parte del release.
+    "helm.sh/hook": post-install
+    "helm.sh/hook-weight": "-5"
+spec:
+  template:
+    metadata:
+      name: "{{ .Release.Name }}-post-install-example-raspberry"
+      labels:
+        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+        app.kubernetes.io/instance: {{ .Release.Name | quote }}
+        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: "post-install-example-raspberry"
+        image: "curlimages/curl:8.2.1"
+        command:
+        - /bin/sh
+        - -c
+        - |
+          cd /var/run/opentwins/example-raspberry-data/
+          ./setup.sh
+        volumeMounts:
+        - name: example-raspberry-data
+          mountPath: "/var/run/opentwins/example-raspberry-data"
+          readOnly: true
+        - name: ditto-gw-users
+          mountPath: "/var/run/opentwins/ditto-gw-users"
+          readOnly: true
+      volumes:
+      - name: example-raspberry-data
+        secret:
+          secretName: {{ printf "%s-%s" .Release.Name "example-raspberry-data" }}
+          defaultMode: 0555
+      - name: ditto-gw-users
+        secret:
+          secretName: {{ printf "%s-%s" ( include "opentwins.ditto.fullname" . ) "gateway-secret" }}
+
+{{- end }}

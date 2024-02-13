@@ -1,0 +1,19 @@
+{
+    "policyId": "example:very_insecure_policy",
+    "attributes": {
+        "location": "Spain",
+        "model": "DHT22"
+    },
+    "features": {
+        "humidity": {
+            "properties": {
+                "value": null
+            }
+        },
+        "temperature": {
+            "properties": {
+                "value": null
+            }
+        }
+    }
+}

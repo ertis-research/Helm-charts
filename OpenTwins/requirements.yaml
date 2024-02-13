@@ -13,13 +13,13 @@ dependencies:
     tags:
       - mongodb
       - essencial
-  - name: OpenTwins-MongoDB
-    version: ~0.1.0
-    repository: "https://ertis-research.github.io/Helm-charts/"
-    condition: OpenTwins-MongoDB.enabled
-    tags:
-      - mongodb
-      - essencial
+  # - name: OpenTwins-MongoDB
+  #   version: ~0.1.0
+  #   repository: "https://ertis-research.github.io/Helm-charts/"
+  #   condition: OpenTwins-MongoDB.enabled
+  #   tags:
+  #     - mongodb
+  #     - essencial
   - name: grafana
     version: ~6.56.1
     repository: "https://grafana.github.io/helm-charts"

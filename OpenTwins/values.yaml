@@ -8,7 +8,7 @@
 # Example digital twin
 ##################################################################
 example:
-  enabled: true
+  enabled: false
 
 
 
@@ -322,28 +322,28 @@ extendedAPI:
 
 # OpenTwins recommended values for ERTIS MongoDB 
 ##################################################################
-OpenTwins-MongoDB:
-  enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
-  nameOverride: mongodb
-  auth:
-    enabled: false
-  securityContext:
-    enabled: false
-  persistence:
-    enabled: false
-  metadata:
-    labels:
-      app: database
-      selector: mongodb
-  service:
-    type: NodePort
-    nodePort: 30718
-  spec:
-    containers:
-    - name: mongodb
-      image:
-        repository: mongo
-        tag: 4.4.6
+# OpenTwins-MongoDB:
+#   enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
+#   nameOverride: mongodb
+#   auth:
+#     enabled: false
+#   securityContext:
+#     enabled: false
+#   persistence:
+#     enabled: false
+#   metadata:
+#     labels:
+#       app: database
+#       selector: mongodb
+#   service:
+#     type: NodePort
+#     nodePort: 30718
+#   spec:
+#     containers:
+#     - name: mongodb
+#       image:
+#         repository: mongo
+#         tag: 4.4.6
       # env:
       #   - name: MONGO_INITDB_ROOT_USERNAME
       #     value: admin
