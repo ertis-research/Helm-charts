@@ -129,6 +129,12 @@ ditto:
 mosquitto:
   enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
   nameOverride: mosquitto
+  service:
+    type: NodePort
+    nodePort: 30511
+  configuration:
+    authentication:
+      enabled: false
 
 
 
