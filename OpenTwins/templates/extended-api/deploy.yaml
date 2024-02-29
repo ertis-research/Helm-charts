@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: ditto-extended-api
-        image: ertis/ditto-extended-api:latest
+        image: {{ printf "%s:%s" .Values.extendedAPI.image.repository .Values.extendedAPI.image.tag }}
         imagePullPolicy: Always
         env: 
         - name: HOST 
@@ -29,7 +29,7 @@ spec:
         - name: PORT 
           value: "{{ .Values.extendedAPI.service.port }}" 
         - name: MONGO_URI_POLICIES 
-          value: {{- if ((.Values.extendedAPI.mongodb).uri) }} {{ .Values.extendedAPI.mongodb.uri }} {{- else }} mongodb://{{ include "opentwins.mongodb.fullname" . }}/policies {{- end }}
+          value: {{- if ((.Values.extendedAPI.mongodb).uri) }} {{ .Values.extendedAPI.mongodb.uri }} {{- else }} mongodb://{{ include "opentwins.mongodb.fullname" . }}/ditto {{- end }}
         - name: DITTO_URI_THINGS 
           value: {{- if ((.Values.extendedAPI.ditto).uri) }} {{ .Values.extendedAPI.ditto.uri }} {{- else }} http://{{ include "opentwins.ditto.fullname" . }}-nginx:{{ .Values.ditto.nginx.service.port }} {{- end}}
         - name: DITTO_USERNAME_API 

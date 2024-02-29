@@ -8,7 +8,7 @@
 # Example digital twin
 ##################################################################
 example:
-  enabled: false
+  enabled: true
 
 
 
@@ -66,6 +66,15 @@ externalInfluxdb2: {}
 #    organization: anyOrganization
 #    token: anyToken
 
+
+# If you need to work with your own Mosquitto or connect more than one, you can add them here as a list.
+# Currently it only connects to Eclipse Ditto, although it is planned to allow it to replace the mosquitto that will be installed in the helm (and connect with Telegraf).
+externalMosquitto: {}
+#  - name: anyName # Do not use hyphens or underscores
+#    uri: tcp://user:pass@hostname:1883 #{protocol}://{username}:{password}@{hostname}:{port}/{path}
+#    addresses: 
+#      - example/#
+#      - example2/#
 
 
 # OpenTwins recommended values for Eclipse Ditto
@@ -194,7 +203,7 @@ grafana:
   grafana.ini:
     plugins:
       plugin_admin_enabled: true
-      allow_loading_unsigned_plugins: opentwins
+      allow_loading_unsigned_plugins: ertis-opentwins
   sidecar:
     datasources:
       enabled: true
@@ -209,8 +218,9 @@ grafana:
         set -euo pipefail
         mkdir -p /grafana-storage/plugins
         cd /grafana-storage/plugins
-        wget https://github.com/ertis-research/opentwins-in-grafana/releases/download/latest/opentwins.zip
-        unzip opentwins.zip
+        wget --no-check-certificate https://github.com/ertis-research/opentwins-in-grafana/releases/download/latest/ertis-opentwins.zip
+        unzip ertis-opentwins.zip
+        rm ertis-opentwins.zip
     volumeMounts:
     - name: storage
       mountPath: /grafana-storage
@@ -296,6 +306,9 @@ mongodb:
 ##################################################################
 extendedAPI:
   enabled: true
+  image:
+    repository: ertis/ditto-extended-api
+    tag: latest
   allLogs: false
   service:
     port: 8080

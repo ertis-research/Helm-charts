@@ -133,5 +133,5 @@ Get the full name of the MongoDB sub chart.
 Get the full name of Extended API.
 */}}
 {{- define "opentwins.extendedAPI.fullname" -}}
-  {{- printf "%s-ditto-extended-api" | trunc 63 | trimSuffix "-" }}
+  {{- printf "%s-ditto-extended-api" .Release.Name | trunc 63 | trimSuffix "-" }}
 {{- end -}}

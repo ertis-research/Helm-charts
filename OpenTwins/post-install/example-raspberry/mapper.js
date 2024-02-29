@@ -5,8 +5,6 @@ function mapToDittoProtocolMsg(headers, textPayload, bytePayload, contentType) {
     const humidity = jsonData['hum'];
     const topic_split = headers['topic'].split('/');
     const id = topic_split[topic_split.length-1];
-
-    headers = Object.assign(headers, { 'Content-Type': 'application/merge-patch+json' });
     
 	const features = {
         temperature: {
@@ -29,7 +27,7 @@ function mapToDittoProtocolMsg(headers, textPayload, bytePayload, contentType) {
         'things',
         'twin',
         'commands',
-        'merge',
+        'modify',
         '/features',
         headers,
         features

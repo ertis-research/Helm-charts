@@ -6,9 +6,7 @@
     "uri": "tcp://{{ include "opentwins.mosquitto.fullname" . }}:1883",
     "sources": [
         {
-            "addresses": [
-                "{{ .Values.connections.ditto.source.mosquitto.address }}"
-            ],
+            "addresses":["{{ .Values.connections.ditto.source.mosquitto.address }}"],
             "consumerCount": 1,
             "qos": 0,
             "authorizationContext": [

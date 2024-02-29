@@ -1,9 +1,9 @@
-{{- if and .Values.example.enabled }}
+{{- if .Values.ditto.enabled }}
 
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Release.Name }}-post-install-example-raspberry"
+  name: "{{ .Release.Name }}-post-install-ditto-default"
   labels:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -18,7 +18,7 @@ metadata:
 spec:
   template:
     metadata:
-      name: "{{ .Release.Name }}-post-install-example-raspberry"
+      name: "{{ .Release.Name }}-post-install-ditto-default"
       labels:
         app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
         app.kubernetes.io/instance: {{ .Release.Name | quote }}
@@ -26,25 +26,25 @@ spec:
     spec:
       restartPolicy: Never
       containers:
-      - name: "post-install-example-raspberry"
+      - name: "post-install-ditto-default"
         image: "curlimages/curl:8.2.1"
         command:
         - /bin/sh
         - -c
         - |
-          cd /var/run/opentwins/example-raspberry-data/
+          cd /var/run/opentwins/ditto-default-data/
           ./setup.sh
         volumeMounts:
-        - name: example-raspberry-data
-          mountPath: "/var/run/opentwins/example-raspberry-data"
+        - name: ditto-default-data
+          mountPath: "/var/run/opentwins/ditto-default-data"
           readOnly: true
         - name: ditto-gw-users
           mountPath: "/var/run/opentwins/ditto-gw-users"
           readOnly: true
       volumes:
-      - name: example-raspberry-data
+      - name: ditto-default-data
         secret:
-          secretName: {{ printf "%s-%s" .Release.Name "example-raspberry-data" }}
+          secretName: {{ printf "%s-%s" .Release.Name "ditto-default-data" }}
           defaultMode: 0555
       - name: ditto-gw-users
         secret:
