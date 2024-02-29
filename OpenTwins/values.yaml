@@ -175,6 +175,7 @@ influxdb2:
     enabled: true
   service:
     type: NodePort
+    nodePort: 30716
   image:
     pullPolicy: Always
   adminUser:
