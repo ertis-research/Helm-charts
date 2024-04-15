@@ -13,15 +13,15 @@ dependencies:
   version: 2.1.2
 - name: telegraf
   repository: https://helm.influxdata.com/
-  version: 1.8.42
+  version: 1.8.44
 - name: mosquitto
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.3.0
 - name: kafka
-  repository: oci://registry-1.docker.io/bitnamicharts
-  version: 26.4.5
+  repository: https://charts.bitnami.com/bitnami
+  version: 22.0.3
 - name: hono
   repository: https://eclipse.org/packages/charts/
   version: 2.6.0
-digest: sha256:feb145bdd6f91b1ec6363bd9190b35b4c9522beacc91e581cae60b8bbc093eb9
-generated: "2024-02-29T13:47:22.5713743+01:00"
+digest: sha256:0b73a6549ed6cc637f8e8af518a93346a1649bd1f70eb3d080d89b733db319c3
+generated: "2024-04-15T12:13:54.0949718+02:00"

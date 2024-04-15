@@ -142,6 +142,7 @@ mosquitto:
 ##################################################################
 kafka:
   enabled: false
+  autoCreateTopicsEnable: true
   
 
 

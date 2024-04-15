@@ -49,8 +49,8 @@ dependencies:
       - mosquitto
       - essencial
   - name: kafka
-    version: ~26.4.2
-    repository: "oci://registry-1.docker.io/bitnamicharts"
+    version: ~22.0.0
+    repository: "https://charts.bitnami.com/bitnami"
     condition: kafka.enabled 
     tags:
       - kafka
