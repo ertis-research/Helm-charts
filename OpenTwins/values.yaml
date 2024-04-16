@@ -211,7 +211,7 @@ grafana:
   grafana.ini:
     plugins:
       plugin_admin_enabled: true
-      allow_loading_unsigned_plugins: ertis-opentwins
+      allow_loading_unsigned_plugins: ertis-opentwins,ertis-unity-panel
   sidecar:
     datasources:
       enabled: true
@@ -229,6 +229,9 @@ grafana:
         wget --no-check-certificate https://github.com/ertis-research/opentwins-in-grafana/releases/download/latest/ertis-opentwins.zip
         unzip ertis-opentwins.zip
         rm ertis-opentwins.zip
+        wget --no-check-certificate https://github.com/ertis-research/grafana-panel-unity/releases/download/latest/ertis-unity-panel.zip
+        unzip ertis-unity-panel.zip
+        rm ertis-unity-panel.zip
     volumeMounts:
     - name: storage
       mountPath: /grafana-storage
