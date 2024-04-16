@@ -24,4 +24,5 @@ helm upgrade --install opentwins ertis/OpenTwins -n opentwins --wait --dependenc
 ```
 
 After waiting some time, the installation will be ready for use.
-For more information on installation, please refer to the [documentation](https://ertis-research.github.io/opentwins/docs/installation/using-helm).
+
+For more information about installation, please refer to the [documentation](https://ertis-research.github.io/opentwins/docs/installation/using-helm).
