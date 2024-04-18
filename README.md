@@ -1,5 +1,5 @@
-# Helm-charts
-Ertis Research group Helm Chart repository
+# Helm charts
+ERTIS Research group Helm Chart repository
 
 ---
 
