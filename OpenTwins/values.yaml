@@ -150,8 +150,10 @@ kafka:
 ##################################################################
 telegraf:
   enabled: true # Value added by OpenTwins to indicate if this component should be installed or not
+  metrics:
+    internal:
+      enabled: false
   config:
-
 # Do no modify
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     processors: [] 

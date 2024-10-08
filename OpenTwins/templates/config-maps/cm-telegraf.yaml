@@ -51,36 +51,38 @@ data:
 {{- end }}
 
 {{- if and .Values.mosquitto.enabled .Values.connections.telegraf.source.mosquitto.enabled }}
-    [[processors.rename]]    
-      [[processors.rename.replace]]  
-        dest = "parent"
-        tag = "extra_attributes__parents"
-      [[processors.rename.replace]]  
-        dest = "originator"
-        tag = "headers_ditto-originator"
-      [[processors.rename.replace]]  
-        dest = "idSimulationRun"
-        tag = "extra_features_idSimulationRun_properties_value"
-      [[processors.rename.replace]]  
-        dest = "thingId"
-        tag = "extra_thingId"
-
-    [[inputs.mqtt_consumer]]    
-      data_format = "json"
+    [[inputs.mqtt_consumer]]   
       qos = 1
       servers = [
         "tcp://{{ include "opentwins.mosquitto.fullname" . }}:1883"
       ]
-      tag_keys = [
-        "extra_attributes__parents",
-        "extra_thingId",
-        "headers_ditto-originator",
-        "extra_features_idSimulationRun_properties_value",
-        "value_time_properties_value"
-      ]
       topics = [
         "{{ .Values.connections.ditto.target.mosquitto.address }}"
       ]
+      data_format = "json_v2"
+      [[inputs.mqtt_consumer.json_v2]]
+        [[inputs.mqtt_consumer.json_v2.tag]]
+          path = "extra.attributes._parents"
+          rename = "parent"
+          optional = true
+        [[inputs.mqtt_consumer.json_v2.tag]]
+          path = "extra.thingId"
+          rename = "thingId"
+        [[inputs.mqtt_consumer.json_v2.tag]]
+          path = "headers.ditto-originator"
+          rename = "originator"
+          optional = true
+        [[inputs.mqtt_consumer.json_v2.tag]]
+          path = "extra.features.idSimulationRun.properties.value"
+          rename = "idSimulationRun"
+          optional = true
+        [[inputs.mqtt_consumer.json_v2.object]]
+          path = "{value}"
+          optional = true
+          excluded_keys = ["value_thingId", "value_policyId", "value_attributes", "value_features"]
+        [[inputs.mqtt_consumer.json_v2.object]]
+          path = '{"value":value.features}'
+          optional = true
 {{- end }}
 
 {{- end }}
