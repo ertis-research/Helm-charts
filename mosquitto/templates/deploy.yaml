@@ -66,6 +66,10 @@ spec:
             - -ex
             - -c
             - |
+              if [ -d /mosquitto/config/ ]; then
+                echo "Directory /mosquitto/config/ already exists. Exiting with success."
+                exit 0
+              fi
               mkdir /mosquitto/config/ &&
               cp /config/mosquitto.conf /mosquitto/config/ &&
               chmod -R 777 /mosquitto
@@ -83,6 +87,10 @@ spec:
             - -ex
             - -c
             - |
+              if [ -d /mosquitto/auth/ ]; then
+                echo "Directory /mosquitto/auth/ already exists. Exiting with success."
+                exit 0
+              fi
               mkdir /mosquitto/auth/ &&
               cp /aux/passwd /mosquitto/auth/ &&
               chmod 0700 /mosquitto/auth/passwd &&
@@ -101,6 +109,10 @@ spec:
             - -ex
             - -c
             - |
+              if [ -d /mosquitto/certs/ ]; then
+                echo "Directory /mosquitto/certs/ already exists. Exiting with success."
+                exit 0
+              fi
               mkdir /mosquitto/certs/ &&
               cp /cert/default.pem /mosquitto/certs/ &&
               chown 1000:1000 /mosquitto/certs/default.pem &&
