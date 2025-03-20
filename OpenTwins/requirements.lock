@@ -23,5 +23,5 @@ dependencies:
 - name: hono
   repository: https://eclipse.org/packages/charts/
   version: 2.6.3
-digest: sha256:a0a6eda58939ce28f0801ef9e5f836d28485d582f0c476c7d9a4429e8d0686e8
-generated: "2025-03-20T17:17:26.0427278+01:00"
+digest: sha256:69437d9ed2c5d47b3a7a423d26b7719390ec095020cc97f10031fc814c7f5496
+generated: "2025-03-20T18:38:40.5864028+01:00"
