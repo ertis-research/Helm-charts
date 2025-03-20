@@ -1568,6 +1568,24 @@ entries:
   mosquitto:
   - apiVersion: v1
     appVersion: 1.6.10
+    created: "2025-03-20T16:12:48.823319566Z"
+    description: Eclipse Mosquitto - An open source MQTT broker
+    digest: e45b7a456f28a31310dcd322f231d1fd9c3d5584266ad1c7f6de24cc6d64a468
+    home: https://mosquitto.org/
+    icon: https://mosquitto.org/images/mosquitto-text-side-28.png
+    keywords:
+    - message queue
+    - MQTT
+    - mosquitto
+    - eclipse-iot
+    name: mosquitto
+    sources:
+    - https://github.com/eclipse/mosquitto
+    urls:
+    - https://github.com/ertis-research/Helm-charts/releases/download/mosquitto-0.3.1/mosquitto-0.3.1.tgz
+    version: 0.3.1
+  - apiVersion: v1
+    appVersion: 1.6.10
     created: "2024-02-15T11:17:08.54999991Z"
     description: Eclipse Mosquitto - An open source MQTT broker
     digest: 7b2ee4b8c309787ecb81cac38f5e34a2b9536a9136d276b2a85089d6b0b82426
@@ -1620,4 +1638,4 @@ entries:
     urls:
     - charts/mqtttomongo-1.0.0.tgz
     version: 1.0.0
-generated: "2024-10-08T15:24:46.844748167Z"
+generated: "2025-03-20T16:12:48.823386271Z"
