@@ -42,7 +42,7 @@ dependencies:
       - telegraf
       - essencial
   - name: mosquitto
-    version: ~0.3.0
+    version: ~0.3.1
     repository: "https://ertis-research.github.io/Helm-charts/"
     condition: mosquitto.enabled 
     tags:
