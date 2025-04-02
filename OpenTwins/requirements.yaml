@@ -21,7 +21,7 @@ dependencies:
   #     - mongodb
   #     - essencial
   - name: grafana
-    version: ~6.56.1
+    version: ~8.5.0
     repository: "https://grafana.github.io/helm-charts"
     condition: grafana.enabled
     tags:
