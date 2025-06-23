@@ -4,7 +4,7 @@ dependencies:
   version: 3.3.7
 - name: mongodb
   repository: oci://registry-1.docker.io/bitnamicharts
-  version: 13.8.3
+  version: 13.18.5
 - name: grafana
   repository: https://grafana.github.io/helm-charts
   version: 8.5.12
@@ -13,7 +13,7 @@ dependencies:
   version: 2.1.2
 - name: telegraf
   repository: https://helm.influxdata.com/
-  version: 1.8.56
+  version: 1.8.58
 - name: mosquitto
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.3.1
@@ -23,5 +23,5 @@ dependencies:
 - name: hono
   repository: https://eclipse.org/packages/charts/
   version: 2.6.3
-digest: sha256:2fe659022fce3620c64805a4b39514bfec89a164b8154a0888c408f376fd02cd
-generated: "2025-04-02T12:25:32.4962599+02:00"
+digest: sha256:6cf14ed83180417c9bf0fedbe4b2a2065843a61277d6c5082cb4a95a116d724b
+generated: "2025-06-23T13:27:44.9810857+02:00"
