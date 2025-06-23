@@ -105,6 +105,8 @@ ditto:
   # Opentwins can display two different mongodb charts. In case of displaying both, the bitnami one will take precedence.
   mongodb:
     enabled: false
+    image: {}
+
   dbconfig:
     uriSecret: ditto-mongodb-connection-secret
   # ----------------------------------------------

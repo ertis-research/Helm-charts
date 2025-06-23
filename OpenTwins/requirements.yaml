@@ -7,7 +7,7 @@ dependencies:
       - ditto
       - essencial
   - name: mongodb
-    version: ~13.8.3
+    version: ~13.18.5
     repository: "oci://registry-1.docker.io/bitnamicharts"
     condition: mongodb.enabled
     tags:
