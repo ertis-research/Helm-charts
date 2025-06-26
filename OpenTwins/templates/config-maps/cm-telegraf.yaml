@@ -73,6 +73,10 @@ data:
           rename = "originator"
           optional = true
         [[inputs.mqtt_consumer.json_v2.tag]]
+          path = "headers.correlation-id"
+          rename = "correlationId"
+          optional = true
+        [[inputs.mqtt_consumer.json_v2.tag]]
           path = "extra.features.idSimulationRun.properties.value"
           rename = "idSimulationRun"
           optional = true
