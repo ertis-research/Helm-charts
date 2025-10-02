@@ -312,10 +312,18 @@ mongodb:
       mongodb: 30717
   persistence:
     enabled: true
-  volumePermissions:
-    enabled: true
   auth:
     enabled: false
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/mongodb
+    tag: 6.0.10-debian-11-r8
+  volumePermissions:
+    enabled: true
+    image: 
+      registry: docker.io
+      repository: bitnamilegacy/os-shell
+      tag: 11-debian-11-r72
 
 
 # OpenTwins recommended values for Ditto Extended API
