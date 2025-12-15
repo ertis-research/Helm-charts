@@ -7,13 +7,13 @@ dependencies:
   version: 13.18.5
 - name: grafana
   repository: https://grafana.github.io/helm-charts
-  version: 8.5.12
+  version: 10.1.5
 - name: influxdb2
   repository: https://helm.influxdata.com/
   version: 2.1.2
 - name: telegraf
   repository: https://helm.influxdata.com/
-  version: 1.8.58
+  version: 1.8.65
 - name: mosquitto
   repository: https://ertis-research.github.io/Helm-charts/
   version: 0.3.1
@@ -22,6 +22,6 @@ dependencies:
   version: 22.0.3
 - name: hono
   repository: https://eclipse.org/packages/charts/
-  version: 2.6.3
-digest: sha256:6cf14ed83180417c9bf0fedbe4b2a2065843a61277d6c5082cb4a95a116d724b
-generated: "2025-06-23T13:27:44.9810857+02:00"
+  version: 2.6.6
+digest: sha256:2a17d5d8eabed61349b4f8cf692fb24636a8e8c12d1ac4995eeea6ae87cfddec
+generated: "2025-12-15T13:29:07.8747202+01:00"
