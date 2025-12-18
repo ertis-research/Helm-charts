@@ -32,7 +32,9 @@ spec:
         - /bin/sh
         - -c
         - |
-          cd /var/run/opentwins/hono-connection-data/
+          cp /var/run/opentwins/hono-connection-data/* /tmp/
+          chmod +x /tmp/hono-source-connection.sh
+          cd /tmp
           ./hono-source-connection.sh
         volumeMounts:
         - name: hono-connection-data

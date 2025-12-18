@@ -10,11 +10,9 @@ metadata:
     app.kubernetes.io/version: {{ .Chart.AppVersion }}
     helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
   annotations:
-    # Esto es lo que define este recurso como un gancho. Sin esta línea, 
-    # el trabajo se considera parte del release.
     "helm.sh/hook": post-install
     "helm.sh/hook-weight": "-5"
-    "helm.sh/hook-delete-policy": hook-succeeded #before-hook-creation,hook-succeeded
+    "helm.sh/hook-delete-policy": hook-succeeded
 spec:
   template:
     metadata:
@@ -28,11 +26,28 @@ spec:
       containers:
       - name: "post-install-mosquitto-target-connection"
         image: "curlimages/curl:8.2.1"
+        env:
+          - name: DITTO_HOST
+            value: {{ include "opentwins.ditto.fullname" . | quote }}
+          - name: DITTO_NGINX_PORT
+            value: {{ .Values.ditto.nginx.service.port | quote }}
+          - name: MOSQUITTO_HOST
+            value: {{ include "opentwins.mosquitto.fullname" . | quote }}
+          - name: DEVOPS_USER
+            value: {{ .Values.ditto.global.basicAuthUsers.devops.user | quote }}
+          - name: DEVOPS_PASSWORD
+            value: {{ .Values.ditto.global.basicAuthUsers.devops.password | quote }}
+          - name: DITTO_USER
+            value: {{ .Values.ditto.global.basicAuthUsers.ditto.user | quote }}
+          - name: DITTO_PASSWORD
+            value: {{ .Values.ditto.global.basicAuthUsers.ditto.password | quote }}
         command:
         - /bin/sh
         - -c
         - |
-          cd /var/run/opentwins/mosquitto-connection-data/
+          cp /var/run/opentwins/mosquitto-connection-data/* /tmp/
+          chmod +x /tmp/mosquitto-target-connection.sh
+          cd /tmp
           ./mosquitto-target-connection.sh
         volumeMounts:
         - name: mosquitto-connection-data

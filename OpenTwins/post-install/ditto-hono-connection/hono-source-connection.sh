@@ -6,12 +6,12 @@
 
 DITTO_DEVOPS_USER_PW="devops:$(cat /var/run/opentwins/ditto-gw-users/devops-password)"
 DEVICE_REGISTRY_URL_SCHEME="{{- if ( eq .Values.hono.deviceRegistryExample.hono.registry.http.insecurePortEnabled true ) }}http{{ else }}https{{ end }}"
-DEVICE_REGISTRY_PORT=$([ "${DEVICE_REGISTRY_URL_SCHEME}" = "http" ] && echo "8080" || echo "8443")
-DEVICE_REGISTRY_BASE_URL="${DEVICE_REGISTRY_URL_SCHEME}://{{ include "opentwins.hono.fullname" . }}-service-device-registry:${DEVICE_REGISTRY_PORT}/v1"
+DEVICE_REGISTRY_PORT=$([ "${DEVICE_REGISTRY_URL_SCHEME}" = "http" ] && echo "28080" || echo "28443")
+DEVICE_REGISTRY_BASE_URL="${DEVICE_REGISTRY_URL_SCHEME}://{{ include "opentwins.hono.fullname" . }}-service-device-registry-ext:${DEVICE_REGISTRY_PORT}/v1"
 DITTO_CONNECTIONS_BASE_URL="http://{{ include "opentwins.ditto.fullname" . }}-nginx:8080/api/2/connections"
 DITTO_THINGS_BASE_URL="http://{{ include "opentwins.ditto.fullname" . }}-nginx:8080/api/2/things"
 
-DEMO_TENANT="{{ .Values.nameHonoTenant }}"
+DEMO_TENANT="{{ .Values.hono.nameHonoTenant }}"
 IS_USING_AMQP="{{- if ( has "amqp" .Values.hono.messagingNetworkTypes ) }}true{{ else }}false{{ end }}"
 IS_USING_KAFKA="{{- if ( has "kafka" .Values.hono.messagingNetworkTypes ) }}true{{ else }}false{{ end }}"
 
@@ -39,10 +39,22 @@ add_hono_tenant() {
   tenant_id="$1"
   http_request_body="$2"
 
-  echo "Adding tenant [$tenant_id]"
+  echo "Adding tenant $tenant_id"
+  
+  # CAMBIO IMPORTANTE: Añadidos flags de reintento
+  # --retry 20: Intenta 20 veces
+  # --retry-connrefused: Reintenta incluso si el servidor rechaza la conexión (típico cuando el pod arranca pero la app no)
+  # --retry-delay 5: Espera 5 segundos entre intentos
+  # --retry-max-time 300: Tiempo máximo total de 5 minutos
+  
   response_body_and_status=$(curl --silent --write-out "\n%{http_code}" -k \
+    --retry 20 \
+    --retry-connrefused \
+    --retry-delay 5 \
+    --retry-max-time 300 \
     -X POST --header 'Content-Type: application/json' \
     --data-raw "$http_request_body" "$DEVICE_REGISTRY_BASE_URL/tenants/$tenant_id")
+    
   check_status $? "$response_body_and_status"
 }
 

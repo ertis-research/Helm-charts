@@ -28,6 +28,19 @@ spec:
       containers:
       - name: "post-install-ditto-default"
         image: "curlimages/curl:8.2.1"
+        env:
+          - name: DITTO_HOST
+            value: {{ include "opentwins.ditto.fullname" . | quote }}
+          - name: DITTO_NGINX_PORT
+            value: {{ .Values.ditto.nginx.service.port | quote }}
+          - name: DEVOPS_USER
+            value: {{ .Values.ditto.global.basicAuthUsers.devops.user | quote }}
+          - name: DEVOPS_PASSWORD
+            value: {{ .Values.ditto.global.basicAuthUsers.devops.password | quote }}
+          - name: DITTO_USER
+            value: {{ .Values.ditto.global.basicAuthUsers.ditto.user | quote }}
+          - name: DITTO_PASSWORD
+            value: {{ .Values.ditto.global.basicAuthUsers.ditto.password | quote }}
         command:
         - /bin/sh
         - -c

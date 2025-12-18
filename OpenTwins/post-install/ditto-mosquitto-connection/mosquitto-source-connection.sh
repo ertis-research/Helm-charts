@@ -7,11 +7,13 @@ source ditto-connection.sh
 
 # Variables
 # ----------------------------------------------
-MOSQUITTO_BASE_URL="tcp://{{ include "opentwins.mosquitto.fullname" . }}:1883"
+MOSQUITTO_BASE_URL="tcp://${MOSQUITTO_HOST}:1883"
 FILENAME=mosquitto-source-connection.json
 
 # Main code
 # ----------------------------------------------
+wait_for_ditto_health
+
 {{- if .Values.mosquitto.enabled }}
 echo "Mosquitto base url: $MOSQUITTO_BASE_URL"
 add_connection_in_ditto "mosquitto-source-connection" $FILENAME

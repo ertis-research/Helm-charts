@@ -259,6 +259,7 @@ grafana:
 # OpenTwins recommended values for Eclipse Hono
 ##################################################################
 hono:
+  nameHonoTenant: opentwins
   enabled: false # Value added by OpenTwins to indicate if this component should be installed or not
   nameOverride: hono
   prometheus:
@@ -301,6 +302,7 @@ hono:
             insecurePortEnabled: true
   adapters: # This needs to be defined for the Eclipse Hono Helm to work (it seems to be a bug)
     mqtt:
+      enabled: false
       hono:
         mqtt:
           insecurePortEnabled: true
