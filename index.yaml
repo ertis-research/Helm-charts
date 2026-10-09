@@ -2510,6 +2510,81 @@ entries:
   opentwinsv2:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-10-09T10:28:37.872413969Z"
+    dependencies:
+    - condition: grafana.enabled
+      name: grafana
+      repository: https://grafana-community.github.io/helm-charts
+      tags:
+      - grafana
+      - essencial
+      version: ~13.2.2
+    - alias: mosquitto
+      condition: mosquitto.enabled
+      name: app-template
+      repository: https://bjw-s-labs.github.io/helm-charts/
+      tags:
+      - mosquitto
+      - essencial
+      version: ~5.1.0
+    - alias: redpanda
+      condition: redpanda.enabled
+      name: redpanda
+      repository: https://charts.redpanda.com
+      tags:
+      - redpanda
+      - essencial
+      version: ~26.2.3
+    - condition: dgraph.enabled
+      name: dgraph
+      repository: https://charts.dgraph.io
+      tags:
+      - dgraph
+      - essencial
+      version: ~24.1.4
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/cloudpirates
+      tags:
+      - redis
+      - essencial
+      version: ~0.34.32
+    - condition: timescaledb.enabled
+      name: timescaledb
+      repository: oci://registry-1.docker.io/cloudpirates
+      tags:
+      - timescaledb
+      - essencial
+      version: ~0.13.10
+    - condition: dapr.enabled
+      name: dapr
+      repository: https://dapr.github.io/helm-charts/
+      tags:
+      - dapr
+      - essencial
+      version: ~1.18.4
+    - condition: kafka-ui.enabled
+      name: kafka-ui
+      repository: https://kafbat.github.io/helm-charts
+      tags:
+      - kafka-ui
+      version: ~1.6.5
+    - condition: dapr-dashboard.enabled
+      name: dapr-dashboard
+      repository: https://dapr.github.io/helm-charts/
+      tags:
+      - dapr-dashboard
+      version: ~0.15.0
+    description: Scalable open-source platform for next-gen composite digital twins
+      built on knowledge graphs and Web of Things standard.
+    digest: cfbd97bcdebc9de8d7cfaff096034f2f711bd27377587dd75e801a29579057ec
+    name: opentwinsv2
+    type: application
+    urls:
+    - https://github.com/ertis-research/helm-charts/releases/download/opentwinsv2-0.0.2/opentwinsv2-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-09-25T12:00:17.223262712Z"
     dependencies:
     - condition: grafana.enabled
@@ -2583,4 +2658,4 @@ entries:
     urls:
     - https://github.com/ertis-research/helm-charts/releases/download/opentwinsv2-0.0.1/opentwinsv2-0.0.1.tgz
     version: 0.0.1
-generated: "2026-09-25T12:00:17.223595694Z"
+generated: "2026-10-09T10:28:37.872503402Z"
