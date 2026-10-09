@@ -10,3 +10,5 @@ spec:
   metadata:
     - name: redisHost
       value: "{{ .Release.Name }}-redis.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.redis.service.port }}"
+    - name: actorStateStore 
+      value: "true"
