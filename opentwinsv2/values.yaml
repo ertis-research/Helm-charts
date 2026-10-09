@@ -92,6 +92,9 @@ opentwinsv2:
 
 redpanda:
   fullnameOverride: opentwinsv2-redpanda
+  config:
+    cluster:
+      auto_create_topics_enabled: true
   tls:
     enabled: false
   external:
@@ -117,6 +120,7 @@ redpanda:
         max: 2Gi
 
 kafka-ui:
+  enabled: true
   service:
     type: NodePort
   yamlApplicationConfig:

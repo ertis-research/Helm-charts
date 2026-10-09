@@ -32,9 +32,9 @@ spec:
             - name: ASPNETCORE_URLS
               value: "http://+:{{ .Values.opentwinsv2.twins.service.targetPort | default 8080 }}"
             - name: DGraph__URL_gRPC
-              value: "{{ .Release.Name }}-dgraph-dgrap-alpha.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.dgraph.alpha.service.grpcPort | default 9080 }}"
+              value: "{{ .Release.Name }}-dgraph-alpha.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.dgraph.alpha.service.grpcPort | default 9080 }}"
             - name: DGraph__URL_HTTP
-              value: "{{ .Release.Name }}-dgraph-dgrap-alpha.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.dgraph.alpha.service.httpPort | default 8080 }}"
+              value: "{{ .Release.Name }}-dgraph-alpha.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.dgraph.alpha.service.httpPort | default 8080 }}"
             {{- if .Values.opentwinsv2.twins.extraEnv }}
             {{- toYaml .Values.opentwinsv2.twins.extraEnv | nindent 12 }}
             {{- end }}
